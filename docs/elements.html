@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Phoenix</title>
+    <title>Flamewing</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="styles.css">
@@ -67,7 +67,7 @@
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg sticky-top">
         <div class="container">
-            <a class="navbar-brand" href="index.html"><img src="img/logo.svg" alt="Phoenix Logo" width="40" style="margin-right: 4px;">Phoenix</a>
+            <a class="navbar-brand" href="index.html"><img src="img/logo.svg" alt="Flamewing Logo" width="40" style="margin-right: 4px;">Flamewing</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -78,10 +78,10 @@
                         <a class="nav-link" aria-current="page" href="index.html">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" target="_blank" href="https://github.com/pazvanti/Phoenix">Source Code</a>
+                        <a class="nav-link" aria-current="page" target="_blank" href="https://github.com/pazvanti/Flamewing">Source Code</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" target="_blank" href="https://github.com/pazvanti/Phoenix/issues">Issues tracker</a>
+                        <a class="nav-link" aria-current="page" target="_blank" href="https://github.com/pazvanti/Flamewing/issues">Issues tracker</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" aria-current="page" href="why_ssr.html">Why SSR?</a>
@@ -95,14 +95,14 @@
                             <li><a class="dropdown-item" href="gettingStarted.html">Getting started</a></li>
                             <li><a class="dropdown-item" href="configuration.html">Configuration</a></li>
                             <li><a class="dropdown-item" href="specialChar.html">The special `@` character</a></li>
-                            <li><a class="dropdown-item" href="phoenixResponse.html">The Phoenix response</a></li>
+                            <li><a class="dropdown-item" href="flamewingResponse.html">The Flamewing response</a></li>
                             <li><a class="dropdown-item" href="fragmentRetrieval.html">Fragment retrieval</a></li>
                             <li><hr class="dropdown-divider"></li>
                             <li><a class="dropdown-item active" href="elements.html">Syntax and elements</a></li>
                         </ul>
                     </li>
                     <li class="nav-item ms-lg-3 mt-2 mt-lg-0">
-                        <a class="btn btn-custom-orange px-3 py-2" href="https://github.com/pazvanti/Phoenix/tree/main/releases">Download Phoenix</a>
+                        <a class="btn btn-custom-orange px-3 py-2" href="https://github.com/pazvanti/Flamewing/tree/main/releases">Download Flamewing</a>
                     </li>
                 </ul>
             </div>
@@ -112,7 +112,7 @@
     <main>
         <section class="py-5">
             <div class="container">
-                <p class="text-custom-orange section-subtitle  text-center">Learn all about the syntax and elements of Phoenix</p>
+                <p class="text-custom-orange section-subtitle  text-center">Learn all about the syntax and elements of Flamewing</p>
                 <h2 class="section-title display-4 mb-5  text-center">Syntax and elements</h2>
                 <div class="row mt-4 p-1 text-white">
                     <div class="col-md-4 d-flex">
@@ -151,8 +151,8 @@
                             <i class="bi bi-chevron-down card-dropdown-icon"></i>
                             <div class="card-icon text-center"><i class="bi bi-fire"></i></div>
                             <div class="card-body p-0">
-                                <h4>The Phoenix Syntax and Template Elements</h4>
-                <p>In most cases, Phoenix will have the exact same syntax as Java, with the addition of the
+                                <h4>The Flamewing Syntax and Template Elements</h4>
+                <p>In most cases, Flamewing will have the exact same syntax as Java, with the addition of the
                     <code>@</code> character being pre-pended to the statement. The <code>@</code> character must be
                     added directly adjetant to the statement, without any whitespaces.
                 </p>
@@ -268,11 +268,11 @@ else {even}&quot;&gt;@if (item.getChange() &lt; 0.0) {
                             </pre>
                     </div>
                 </div>
-                <p>Phoenix currently goes for an "optimistic" approach where it will assume that the template is valid
-                    and will tryu to generate the undelying Java class. If this is not the case, the underlying Java
-                    class will fail to compile. At the moment Phoenix does not provide clear indication as to where the
+                <p>Flamewing currently goes for an "optimistic" approach where it will assume that the template is valid
+                    and will try to generate the underlying Java class. If this is not the case, the underlying Java
+                    class will fail to compile. At the moment Flamewing does not provide clear indication as to where the
                     template is invalid, but further work will be done to provide this as well</p>
-                <p>Below you can find more clear explanations for each element supported by Phoenix, with more examples.
+                <p>Below you can find more clear explanations for each element supported by Flamewing, with more examples.
                 </p>
                             </div>
                         </div>
@@ -318,7 +318,7 @@ else {even}&quot;&gt;@if (item.getChange() &lt; 0.0) {
                     <p>
                         You can import any Java class from your project, including standard Java classes, right into the
                         template. All declared input arguments must have their underlying class imported. Imports must
-                        be declared at the start of the template, before the <code>args</code> declaration. Phoenix also
+                        be declared at the start of the template, before the <code>args</code> declaration. Flamewing also
                         supports static imports. Primitives and <code>java.lang.*</code> don't need to be imported.
                     <pre>
                             <code class="language-html">
@@ -359,7 +359,7 @@ else {even}&quot;&gt;@if (item.getChange() &lt; 0.0) {
                                 <div class="card-body p-0">
                                     <h5 class="element_title">Printing variables or calling methods</h5>
                     <p>
-                        Phoenix allows you send variables from the controller to the template in an easy way. In the
+                        Flamewing allows you send variables from the controller to the template in an easy way. In the
                         tempalte you can refference any variable by appending the <code>@</code> character. This will
                         print the value of that variable in the HTML code of the page when it is being rendered.
                         Furthermore, you can call method from that object, just like you would in any Java class.
@@ -381,9 +381,9 @@ else {even}&quot;&gt;@if (item.getChange() &lt; 0.0) {
                                     <h5 class="element_title">Null-safe printing: <code>@?</code></h5>
                     <p>
                         If a variable is null you will encounter a NullPointerException when the template is being
-                        rendered. Phoenix supports two null-safety operators. The null-safe printing element will try to
+                        rendered. Flamewing supports two null-safety operators. The null-safe printing element will try to
                         evalueate the variable or method call. In case null is encoutnered anywhere in the stack trace,
-                        nothing will be printed. Phoenix achieves this by catching the NullPointerException in the code
+                        nothing will be printed. Flamewing achieves this by catching the NullPointerException in the code
                         as well as valdiating that the result is not null.</p>
                     <p>In the below example, nothing will be printed if the variable <code>test</code> is null.</p>
                     <pre>
@@ -409,7 +409,7 @@ else {even}&quot;&gt;@if (item.getChange() &lt; 0.0) {
                                 <div class="card-body p-0">
                                     <h5 class="element_title">Null-safe ternary operator: <code>@var?:"default"</code></h5>
                     <p>
-                        The Null-safe ternary operator is the second null-safe element provided by Phoenix. This element
+                        The Null-safe ternary operator is the second null-safe element provided by Flamewing. This element
                         is great if you want to provide a default value in case the variable you are trying to print is
                         null. This element <strong>does not</strong> protect agains NullPointerException in the
                         stacktrace, however, it checks if the variable or the method call is null. If it is, the default
@@ -453,7 +453,7 @@ else {even}&quot;&gt;@if (item.getChange() &lt; 0.0) {
                                 <div class="card-body p-0">
                                     <h5 class="element_title">Evaluating expressions: <code>@()</code></h5>
                     <p>
-                        Phoenix allows you to evaluate expressions in the template. This is done using the
+                        Flamewing allows you to evaluate expressions in the template. This is done using the
                         <code>@()</code>. This element also comes in handy when you want to use a variable as part of
                         text which would otherwise be considered method calls, for example when building the URL to a
                         page where the fileName (but not the extension) is provided by your variable.
@@ -502,7 +502,7 @@ else {even}&quot;&gt;@if (item.getChange() &lt; 0.0) {
                                 <div class="card-body p-0">
                                     <h5 class="element_title">For loops: <code>@for()</code></h5>
                     <p>
-                        Phoenix supports <code>for</code> loops in a similar way Java does. You can define a loop using
+                        Flamewing supports <code>for</code> loops in a similar way Java does. You can define a loop using
                         the <code>@for</code> syntax and use a counter to itterate between elements as well as a
                         <code>for-in</code> loops. <code>For</code> statements must start on a new line, with the opening
                         curly bracket (<code>{</code>) being on the same line. Furthermore, the ending curly bracket
@@ -529,7 +529,7 @@ else {even}&quot;&gt;@if (item.getChange() &lt; 0.0) {
                         </div>
                     </div>
                     <p>
-                        Furthermore, Phoenix supports a <code>for-with-iterator</code> where in addition to the item
+                        Furthermore, Flamewing supports a <code>for-with-iterator</code> where in addition to the item
                         being returned from the collection, an itterator is also being returned which can provide the
                         index.
                     </p>
@@ -552,9 +552,9 @@ else {even}&quot;&gt;@if (item.getChange() &lt; 0.0) {
                         <code> @if-else if-else</code>
                     </h5>
                     <p>
-                        Phoenix supports standard Java <code>if</code> conditionals along with <code>if-else</code> and
+                        Flamewing supports standard Java <code>if</code> conditionals along with <code>if-else</code> and
                         <code>if-else if-else</code> statements. The left curly bracket <code>{</code> must be on the
-                        same line with the statment. Phoenix allows the <code>if</code> statment to be inline completly
+                        same line with the statment. Flamewing allows the <code>if</code> statment to be inline completly
                         or have the <code>if</code> statement on a new line.
                     </p>
                     <pre>
@@ -584,7 +584,7 @@ else {even}&quot;&gt;@if (item.getChange() &lt; 0.0) {
                     <p>
                         In certain scenarios you would like to declare a new variable that holds the refference to an
                         element received from a method call, like an element from within a list, and to reuse it without
-                        the need to do multiple calls to the getter. This is why Phoenix supports declaring a variable
+                        the need to do multiple calls to the getter. This is why Flamewing supports declaring a variable
                         using the <code>@with</code>
                         block. The <code>@with</code> block declares a new variable and inside the block's body you can
                         use it with ease.
@@ -605,7 +605,7 @@ else {even}&quot;&gt;@if (item.getChange() &lt; 0.0) {
                                 <div class="card-icon text-center"><i class="bi bi-fire"></i></div>
                                 <div class="card-body p-0">
                                     <h5 class="element_title">Autowire any Bean: <code>@autowired</code></h5>
-                                    <p>In Phoenix you can easily inject any bean inside your template file. This is similar to using the <code>@Autowired</code> annotation in Spring. The engine will 
+                                    <p>In Flamewing you can easily inject any bean inside your template file. This is similar to using the <code>@Autowired</code> annotation in Spring. The engine will
                                     use the Spring Application Context to retrieve the bean. After that, you can use the instance like any object.</p>
                                     <pre>
                                         <code class="language-html">
@@ -624,10 +624,10 @@ else {even}&quot;&gt;@if (item.getChange() &lt; 0.0) {
                                 <div class="card-body p-0">
                                     <h5 class="element_title">Calling fragments: <code>@fragmentName.template()</code></h5>
                     <p>
-                        Phoenix was conceived from the start to allow building of complex and modular web applications.
-                        An important component in any template engine, Phoenix including, is the possiblity to have
+                        Flamewing was conceived from the start to allow building of complex and modular web applications.
+                        An important component in any template engine, Flamewing including, is the possiblity to have
                         fragments or templates that can be reused and combined to create more complex web pages. Any
-                        Phoenix template can be combined with others by calling the template and providing the right
+                        Flamewing template can be combined with others by calling the template and providing the right
                         parameters.
                     </p>
                     <p>A template is invoked by calling the <code>.template()</code> method on the template. As with
@@ -645,7 +645,7 @@ else {even}&quot;&gt;@if (item.getChange() &lt; 0.0) {
                         </code>
                     </pre>
 
-                    <p>If the last argument is of type <code>PhoenixContent</code> (more on that later), the content can
+                    <p>If the last argument is of type <code>FlamewingContent</code> (more on that later), the content can
                         be provided as blocks of code inside curly brackets <code>{...}</code></p> All other parameters
                     are provided normally, as arguments to the function call.
                     <div class="row">
@@ -653,7 +653,7 @@ else {even}&quot;&gt;@if (item.getChange() &lt; 0.0) {
                             <h6>fragments/withContent.java.html</h6>
                             <pre>
                                 <code class="language-html">
-@args(int a, PhoenixContent content)
+@args(int a, FlamewingContent content)
 
 &lt;h1&gt;Fragment @a&lt;/h1&gt;
 
@@ -684,12 +684,12 @@ else {even}&quot;&gt;@if (item.getChange() &lt; 0.0) {
                                 <div class="card-body p-0">
                                     <h5 class="element_title">Content blocks: <code>@myContent => { }</code></h5>
                     <p>
-                        Phoenix allows declaration of content blocks which can be reused multiple times or sent as
+                        Flamewing allows declaration of content blocks which can be reused multiple times or sent as
                         inputs to other templates. Content blocks are reusable parts of content that are declared inside
                         the same template. Once declared, content blocks can be refferenced and inserted just like any
                         other variables.
 
-                        Content blocks have the type <code>PhoenixContent</code> and can be input parameters for other
+                        Content blocks have the type <code>FlamewingContent</code> and can be input parameters for other
                         templates.
                     </p>
                     <pre>
@@ -714,7 +714,7 @@ else {even}&quot;&gt;@if (item.getChange() &lt; 0.0) {
                                 <div class="card-body p-0">
                                     <h5 class="element_title">Reverse routing: <code>@route</code></h5>
                     <p>
-                        One advantage that Phoenix has over other templates engines is the presence of route elements
+                        One advantage that Flamewing has over other templates engines is the presence of route elements
                         and reverse routing calculated at compile time. Any endpoint declared in your controllers will
                         create a route that includes the URL, path variables and request attributes. All controllers
                         that are defined in the configured package will be included and Pheonix currently supports
@@ -767,7 +767,7 @@ public class TestController {
                                 <div class="card-body p-0">
                                     <h5 class="element_title">CSRF protection: <code>@csrf.meta</code> and <code>@csrf.input</code></h5>
                     <p>
-                        Phoenix provides an easy way of adding CSRF tokens to your web page, either via a hidden input
+                        Flamewing provides an easy way of adding CSRF tokens to your web page, either via a hidden input
                         or using meta tags. This is done using the <code>@csrf.input</code> or <code>@csrf.meta</code>
                         respectivly.
                     </p>
@@ -785,7 +785,7 @@ public class TestController {
                         <h6>CSRF Input</h6>
                         <div class="row">
                             <div class="col-6">
-                                <i>Phoenix element</i>
+                                <i>Flamewing element</i>
                                 <pre>
                                     <code class="language-java">
 @csrf.input()
@@ -806,7 +806,7 @@ public class TestController {
                             <h6>CSRF meta</h6>
                             <div class="row">
                                 <div class="col-6">
-                                    <i>Phoenix element</i>
+                                    <i>Flamewing element</i>
                                     <pre>
                                         <code class="language-java">
 @csrf.meta()
@@ -834,7 +834,7 @@ public class TestController {
                                 <div class="card-icon text-center"><i class="bi bi-fire"></i></div>
                                 <div class="card-body p-0">
                                     <h5 class="element_title">Defining sections in your template</h5>
-                    <p>Phoenix has a feature where you can define sections in your template. Sections are rendered just as everything else,
+                    <p>Flamewing has a feature where you can define sections in your template. Sections are rendered just as everything else,
                     but has the advantage that code can be inserted inside from within fragments. </p>
                     <p>Let's take an example, since it is easier to understand. You have your HTML page and inside you have the styles, the HTML part and the JavaScript part.
                     </p>
@@ -863,7 +863,7 @@ public class TestController {
                                 <div class="card-icon text-center"><i class="bi bi-fire"></i></div>
                                 <div class="card-body p-0">
                                     <h5 class="element_title">Inserting content at a specific position</h5>
-                    <p>Phoenix allows you to insert content at a specific position in the template.</p>
+                    <p>Flamewing allows you to insert content at a specific position in the template.</p>
                     <p>This can be achieved using either the <code>@insertAt("sectionName")</code> or <code>@insertOnce("sectionName")</code></p>
                     <p>When defining a fragment, you can include additional code in the two tags mentioned and when the fragment is
                     included inside another template, the specified code will be inserted in the right section. If the section does
@@ -913,7 +913,7 @@ public class TestController {
                         <li><a href="gettingStarted.html">Getting started</a></li>
                         <li><a href="configuration.html">Configuration</a></li>
                         <li><a href="specialChar.html">The special `@` character</a></li>
-                        <li><a href="phoenixResponse.html">The Phoenix response</a></li>
+                        <li><a href="flamewingResponse.html">The Flamewing response</a></li>
                         <li><a href="fragmentRetrieval.html">Fragment retrieval</a></li>
                         <li><a href="elements.html">Syntax and elements</a></li>
                     </ul>
@@ -921,9 +921,9 @@ public class TestController {
                 <div class="col-md-4 mb-4 mb-md-0">
                     <h5>Source Code</h5>
                     <ul>
-                        <li><a href="https://github.com/pazvanti/Phoenix" target="_blank">Phoenix Source Code</a></li>
-                        <li><a href="https://github.com/pazvanti/Phoenix/issues" target="_blank">Issue tracker</a></li>
-                        <li><a href="https://github.com/pazvanti/Phoenix-Benchmarks" target="_blank">Benchmarks source code</a></li>
+                        <li><a href="https://github.com/pazvanti/Flamewing" target="_blank">Flamewing Source Code</a></li>
+                        <li><a href="https://github.com/pazvanti/Flamewing/issues" target="_blank">Issue tracker</a></li>
+                        <li><a href="https://github.com/pazvanti/Flamewing-Benchmarks" target="_blank">Benchmarks source code</a></li>
                     </ul>
                 </div>
                 <div class="col-md-4 mb-4 mb-md-0">
@@ -938,7 +938,7 @@ public class TestController {
             <div class="footer-bottom d-flex flex-column flex-md-row justify-content-between align-items-center">
                 <p class="small text-muted mb-2 mb-md-0">&copy; Petre Popescu</p>
                 <div class="footer-social-icons">
-                    <a href="https://github.com/pazvanti/Phoenix/" target="_blank"><i class="bi bi-github"></i></a>
+                    <a href="https://github.com/pazvanti/Flamewing/" target="_blank"><i class="bi bi-github"></i></a>
                     <a href="https://www.linkedin.com/in/ppopescu/" target="_blank"><i class="bi bi-linkedin"></i></a>
                     <a href="https://petrepopescu.tech" target="_blank"><i class="bi bi-globe"></i></a>
                 </div>

@@ -1,6 +1,6 @@
 package tech.petrepopescu.utils;
 
-import tech.petrepopescu.phoenix.utils.StringUtils;
+import tech.petrepopescu.flamewing.utils.StringUtils;
 
 public class TestUtil {
     public static String sanitizeResult(String result) {

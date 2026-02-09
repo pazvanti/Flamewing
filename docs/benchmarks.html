@@ -17,7 +17,7 @@
 
     <!-- and it's easy to individually load additional languages -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/java.min.js"></script>
-    <title>Phoenix Template Engine Documentation - Getting started</title>
+    <title>Flamewing Template Engine Documentation - Getting started</title>
 </head>
 
 <body>
@@ -26,7 +26,7 @@
             <div class="container">
                 <a class="navbar-brand" href="index.html">
                     <img src="img/logo_small.png" width="30" height="30" class="d-inline-block align-top" alt="" />
-                    Phoenix
+                    Flamewing
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -39,10 +39,10 @@
                             <a class="nav-link" aria-current="page" href="index.html">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="https://github.com/pazvanti/Phoenix/">Source Code</a>
+                            <a class="nav-link" href="https://github.com/pazvanti/Flamewing/">Source Code</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="https://github.com/pazvanti/Phoenix/issues">Roadmap and issues</a>
+                            <a class="nav-link" href="https://github.com/pazvanti/Flamewing/issues">Roadmap and issues</a>
                         </li>
                         <li class="nav-item dropdown active">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
@@ -53,7 +53,7 @@
                                 <li><a class="dropdown-item" href="gettingStarted.html">Getting started</a></li>
                                 <li><a class="dropdown-item" href="configuration.html">Configuration</a></li>
                                 <li><a class="dropdown-item" href="specialChar.html">The special `@` character</a></li>
-                                <li><a class="dropdown-item" href="phoenixResponse.html">The Phoenix Response</a></li>
+                                <li><a class="dropdown-item" href="flamewingResponse.html">The Flamewing Response</a></li>
                                 <li><a class="dropdown-item" href="fragmentRetrieval.html">Fragment retrieval</a></li>
                                 <li>
                                     <hr class="dropdown-divider">
@@ -70,16 +70,16 @@
         </nav>
         <div class="row content-one shadow">
             <div class="col-12 mt-2">
-                <h4 class="text-center text-white">Getting started with Phoenix</h4>
+                <h4 class="text-center text-white">Getting started with Flamewing</h4>
                 <div class="row mt-4 p-1 text-white">
-                    <p>Phoenix is still in early development and the following benchmarks should be taken with a grain
+                    <p>Flamewing is still in early development and the following benchmarks should be taken with a grain
                         of salt and may not reflect the final version of the code. Changes may occur in the future, both
                         positive and negative from a speed perspective. Furthermore, current benchmarks were done
                         redumentary and not using propper benchmarking technics like using JMH.</p>
                     <p>As a starter, the template for Rocker and Thymeleaf from <a
                             href="https://github.com/mbosecke/template-benchmark" target="_blank">this repository</a>
-                        was used, with an additional template for Phoenix which rendered the same result. However, due
-                        to Phoenix being in early stages of development and because it needs a Spring Context to compile
+                        was used, with an additional template for Flamewing which rendered the same result. However, due
+                        to Flamewing being in early stages of development and because it needs a Spring Context to compile
                         the template, a simple <code>@SpringBootTest</code> was used. For Rocker, the template was
                         compiled before execution. </p>
                     <p>Using <code>100_000</code> iterations, the template was called and rendered. Execution time in ms
@@ -98,7 +98,7 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td>Phoenix</td>
+                                        <td>Flamewing</td>
                                         <td>786ms</td>
                                     </tr>
                                     <tr>
@@ -131,19 +131,19 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
 import org.thymeleaf.context.IContext;
-import tech.petrepopescu.phoenix.controllers.FragmentController;
-import tech.petrepopescu.phoenix.parser.ElementFactory;
-import tech.petrepopescu.phoenix.parser.PhoenixParser;
-import tech.petrepopescu.phoenix.parser.compiler.Compiler;
-import tech.petrepopescu.phoenix.parser.compiler.DynamicClassLoader;
-import tech.petrepopescu.phoenix.parser.route.RouteGenerator;
-import tech.petrepopescu.phoenix.special.PhoenixSpecialElementsUtil;
-import tech.petrepopescu.phoenix.spring.PhoenixErrorHandler;
-import tech.petrepopescu.phoenix.spring.PhoenixMessageConverter;
-import tech.petrepopescu.phoenix.spring.SecurityConfig;
-import tech.petrepopescu.phoenix.spring.config.PhoenixConfiguration;
-import tech.petrepopescu.phoenix.spring.config.ViewsConfiguration;
-import tech.petrepopescu.phoenix.views.View;
+import tech.petrepopescu.flamewing.controllers.FragmentController;
+import tech.petrepopescu.flamewing.parser.ElementFactory;
+import tech.petrepopescu.flamewing.parser.FlamewingParser;
+import tech.petrepopescu.flamewing.parser.compiler.Compiler;
+import tech.petrepopescu.flamewing.parser.compiler.DynamicClassLoader;
+import tech.petrepopescu.flamewing.parser.route.RouteGenerator;
+import tech.petrepopescu.flamewing.special.FlamewingSpecialElementsUtil;
+import tech.petrepopescu.flamewing.spring.FlamewingErrorHandler;
+import tech.petrepopescu.flamewing.spring.FlamewingMessageConverter;
+import tech.petrepopescu.flamewing.spring.SecurityConfig;
+import tech.petrepopescu.flamewing.spring.config.FlamewingConfiguration;
+import tech.petrepopescu.flamewing.spring.config.ViewsConfiguration;
+import tech.petrepopescu.flamewing.views.View;
 
 import java.io.StringWriter;
 import java.io.Writer;
@@ -152,9 +152,9 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
-@SpringBootTest(classes = {SecurityConfig.class, PhoenixMessageConverter.class, RouteGenerator.class, Compiler.class, ElementFactory.class,
-        DynamicClassLoader.class, PhoenixConfiguration.class, PhoenixSpecialElementsUtil.class, FragmentController.class,
-        PhoenixErrorHandler.class})
+@SpringBootTest(classes = {SecurityConfig.class, FlamewingMessageConverter.class, RouteGenerator.class, Compiler.class, ElementFactory.class,
+        DynamicClassLoader.class, FlamewingConfiguration.class, FlamewingSpecialElementsUtil.class, FragmentController.class,
+        FlamewingErrorHandler.class})
 @ImportAutoConfiguration(ThymeleafAutoConfiguration.class)
 class FullBenchmark {
     @Autowired
@@ -164,7 +164,7 @@ class FullBenchmark {
     private RouteGenerator routeGenerator;
 
     @Autowired
-    private PhoenixSpecialElementsUtil phoenixSpecialElementsUtil;
+    private FlamewingSpecialElementsUtil flamewingSpecialElementsUtil;
 
     @Autowired
     private TemplateEngine engine;
@@ -172,19 +172,19 @@ class FullBenchmark {
     @Test
     void benchmark() throws Exception {
         List&lt;Stock&gt; items = Stock.dummyItems();
-        preparePhoenix();
+        prepareFlamewing();
         IContext context = new Context(Locale.getDefault(), getThymeleafContext(items));
 
         System.out.println("Running benchmark...");
         long rocker = runBenchmark(() -&gt; stocks.template(items).render().toString());
-        long phoenix = runBenchmark(() -&gt; View.of("phoenix", items).getContent(phoenixSpecialElementsUtil));
+        long flamewing = runBenchmark(() -&gt; View.of("Flamewing", items).getContent(flamewingSpecialElementsUtil));
         long thymeleaf = runBenchmark(() -&gt; {
             Writer writer = new StringWriter();
             engine.process("stocks.thymeleaf.html", context, writer);
             writer.toString();
         });
 
-        System.out.println("Phoenix Benchmark: " + phoenix + "ms");
+        System.out.println("Flamewing Benchmark: " + flamewing + "ms");
         System.out.println("Thymeleaf Benchmark: " + thymeleaf + "ms");
         System.out.println("Rocker Benchmark: " + rocker + "ms");
     }
@@ -198,12 +198,12 @@ class FullBenchmark {
         return end - start;
     }
 
-    private void preparePhoenix() {
-        PhoenixConfiguration phoenixConfiguration = new PhoenixConfiguration();
-        phoenixConfiguration.setViews(new ViewsConfiguration());
-        phoenixConfiguration.getViews().setPath("src/test/resources/views");
+    private void prepareFlamewing() {
+        FlamewingConfiguration flamewingConfiguration = new FlamewingConfiguration();
+        flamewingConfiguration.setViews(new ViewsConfiguration());
+        flamewingConfiguration.getViews().setPath("src/test/resources/views");
 
-        PhoenixParser parser = new PhoenixParser(new ElementFactory(null), routeGenerator, compiler, phoenixConfiguration);
+        FlamewingParser parser = new FlamewingParser(new ElementFactory(null), routeGenerator, compiler, flamewingConfiguration);
         parser.parse();
     }
 

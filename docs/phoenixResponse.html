@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Phoenix</title>
+    <title>Flamewing</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="styles.css">
@@ -19,7 +19,7 @@
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg sticky-top">
         <div class="container">
-            <a class="navbar-brand" href="index.html"><img src="img/logo.svg" alt="Phoenix Logo" width="40" style="margin-right: 4px;">Phoenix</a>
+            <a class="navbar-brand" href="index.html"><img src="img/logo.svg" alt="Flamewing Logo" width="40" style="margin-right: 4px;">Flamewing</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -30,10 +30,10 @@
                         <a class="nav-link" aria-current="page" href="index.html">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" target="_blank" href="https://github.com/pazvanti/Phoenix">Source Code</a>
+                        <a class="nav-link" aria-current="page" target="_blank" href="https://github.com/pazvanti/Flamewing">Source Code</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" target="_blank" href="https://github.com/pazvanti/Phoenix/issues">Issues tracker</a>
+                        <a class="nav-link" aria-current="page" target="_blank" href="https://github.com/pazvanti/Flamewing/issues">Issues tracker</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" aria-current="page" href="why_ssr.html">Why SSR?</a>
@@ -47,14 +47,14 @@
                             <li><a class="dropdown-item" href="gettingStarted.html">Getting started</a></li>
                             <li><a class="dropdown-item" href="configuration.html">Configuration</a></li>
                             <li><a class="dropdown-item" href="specialChar.html">The special `@` character</a></li>
-                            <li><a class="dropdown-item active" href="phoenixResponse.html">The Phoenix response</a></li>
+                            <li><a class="dropdown-item active" href="flamewingResponse.html">The Flamewing response</a></li>
                             <li><a class="dropdown-item" href="fragmentRetrieval.html">Fragment retrieval</a></li>
                             <li><hr class="dropdown-divider"></li>
                             <li><a class="dropdown-item" href="elements.html">Syntax and elements</a></li>
                         </ul>
                     </li>
                     <li class="nav-item ms-lg-3 mt-2 mt-lg-0">
-                        <a class="btn btn-custom-orange px-3 py-2" href="https://github.com/pazvanti/Phoenix/tree/main/releases">Download Phoenix</a>
+                        <a class="btn btn-custom-orange px-3 py-2" href="https://github.com/pazvanti/Flamewing/tree/main/releases">Download Flamewing</a>
                     </li>
                 </ul>
             </div>
@@ -65,36 +65,36 @@
         <section class="py-5">
             <div class="container">
                 <p class="text-custom-orange section-subtitle  text-center">Return a JSON response or an HTML page with ease</p>
-                <h2 class="section-title display-4 mb-5  text-center">The Phoenix response</h2>
+                <h2 class="section-title display-4 mb-5  text-center">The Flamewing response</h2>
                 <div class="row mt-4 p-1 text-white">
                     <div class="col-md-12 d-flex">
                         <div class="card p-4 w-100">
                             <i class="bi bi-chevron-down card-dropdown-icon"></i>
                             <div class="card-icon text-center"><i class="bi bi-fire"></i></div>
                             <div class="card-body p-0">
-                                <p>Phoenix makes it easy to render HTML pages or JSON response from a controller. Normally, you will
-                                    need to use Spring's <code>ResponseEntity</code>, however Phoenix simplifies this by offering a
-                                    single <code>tech.petrepopescu.phoenix.format.Result</code> that can be either an HTML page or a
-                                    JSON result. Furthermore, Phoenix makes it easy to send any HTTP status code using
-                                    <code>tech.petrepopescu.phoenix.format.PhoenixResponse</code>. There are predefined methods
-                                    <code>PhoenixResponse.ok()</code> and <code>PhoenixResponse.notFound()</code>, or just use
-                                    <code>PhoenixResponse.withHttpStatus()</code> to send any HTTP status code.
+                                <p>Flamewing makes it easy to render HTML pages or JSON response from a controller. Normally, you will
+                                    need to use Spring's <code>ResponseEntity</code>, however Flamewing simplifies this by offering a
+                                    single <code>tech.petrepopescu.flamewing.format.Result</code> that can be either an HTML page or a
+                                    JSON result. Furthermore, Flamewing makes it easy to send any HTTP status code using
+                                    <code>tech.petrepopescu.flamewing.format.FlamewingResponse</code>. There are predefined methods
+                                    <code>FlamewingResponse.ok()</code> and <code>FlamewingResponse.notFound()</code>, or just use
+                                    <code>FlamewingResponse.withHttpStatus()</code> to send any HTTP status code.
                                 </p>
                                 <p>The mentioned methods accept any Java object and it will provide a JSON response to the user. The
-                                    power of Phoenix, however, lies in it's ability to render HTML pages. If the PhoenixResponse
-                                    receives a Phoenix View as an input, it will be rendered as an HTML page. This can be done by
+                                    power of Flamewing, however, lies in it's ability to render HTML pages. If the FlamewingResponse
+                                    receives a Flamewing View as an input, it will be rendered as an HTML page. This can be done by
                                     calling <code>View.of()</code> with the template name and input parameters.</p>
 
                                 <p>Input parameters must be provided in the same order and have the same type as the ones declared
-                                    in the template's argument (<code>@args()</code>) block. Since Phoenix supports importing any
+                                    in the template's argument (<code>@args()</code>) block. Since Flamewing supports importing any
                                     class from your code, you can provide complex objects as input parameters and send them directly
                                     from the controller.</p>
 
                                 <pre>
                                     <code class="language-java">
-import tech.petrepopescu.phoenix.format.Result;
-import tech.petrepopescu.phoenix.views.View;
-import static tech.petrepopescu.phoenix.format.PhoenixResponse.ok;
+import tech.petrepopescu.flamewing.format.Result;
+import tech.petrepopescu.flamewing.views.View;
+import static tech.petrepopescu.flamewing.format.FlamewingResponse.ok;
 
 @Controller
 public class TestController {
@@ -139,7 +139,7 @@ public class TestController {
                         <li><a href="gettingStarted.html">Getting started</a></li>
                         <li><a href="configuration.html">Configuration</a></li>
                         <li><a href="specialChar.html">The special `@` character</a></li>
-                        <li><a href="phoenixResponse.html">The Phoenix response</a></li>
+                        <li><a href="flamewingResponse.html">The Flamewing response</a></li>
                         <li><a href="fragmentRetrieval.html">Fragment retrieval</a></li>
                         <li><a href="elements.html">Syntax and elements</a></li>
                     </ul>
@@ -147,9 +147,9 @@ public class TestController {
                 <div class="col-md-4 mb-4 mb-md-0">
                     <h5>Source Code</h5>
                     <ul>
-                        <li><a href="https://github.com/pazvanti/Phoenix" target="_blank">Phoenix Source Code</a></li>
-                        <li><a href="https://github.com/pazvanti/Phoenix/issues" target="_blank">Issue tracker</a></li>
-                        <li><a href="https://github.com/pazvanti/Phoenix-Benchmarks" target="_blank">Benchmarks source code</a></li>
+                        <li><a href="https://github.com/pazvanti/Flamewing" target="_blank">Flamewing Source Code</a></li>
+                        <li><a href="https://github.com/pazvanti/Flamewing/issues" target="_blank">Issue tracker</a></li>
+                        <li><a href="https://github.com/pazvanti/Flamewing-Benchmarks" target="_blank">Benchmarks source code</a></li>
                     </ul>
                 </div>
                 <div class="col-md-4 mb-4 mb-md-0">
@@ -164,7 +164,7 @@ public class TestController {
             <div class="footer-bottom d-flex flex-column flex-md-row justify-content-between align-items-center">
                 <p class="small text-muted mb-2 mb-md-0">&copy; Petre Popescu</p>
                 <div class="footer-social-icons">
-                    <a href="https://github.com/pazvanti/Phoenix/" target="_blank"><i class="bi bi-github"></i></a>
+                    <a href="https://github.com/pazvanti/Flamewing/" target="_blank"><i class="bi bi-github"></i></a>
                     <a href="https://www.linkedin.com/in/ppopescu/" target="_blank"><i class="bi bi-linkedin"></i></a>
                     <a href="https://petrepopescu.tech" target="_blank"><i class="bi bi-globe"></i></a>
                 </div>

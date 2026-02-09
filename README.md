@@ -1,23 +1,23 @@
-# Phoenix Template Engine
+# Flamewing Template Engine
 
-## What is Phoenix
+## What is Flamewing
 
-Phoenix aims to be a modern template engine that will facilitate development of complex web application by providing an ease to use and easy to understand syntax for developing the HTML pages that will be rendered by the backend. Phoenix uses Server-Side-Rendering (SSR) to speed webpage load times and to provide close integration between the front-end and the back-end of a web application.
+Flamewing aims to be a modern template engine that will facilitate development of complex web application by providing an ease to use and easy to understand syntax for developing the HTML pages that will be rendered by the backend. Flamewing uses Server-Side-Rendering (SSR) to speed webpage load times and to provide close integration between the front-end and the back-end of a web application.
 
-Phoenix provides many advantages compared to other template engines that are currently available for Spring/Spring Boot and introduces new features that are not currently available elsewhere.
+Flamewing provides many advantages compared to other template engines that are currently available for Spring/Spring Boot and introduces new features that are not currently available elsewhere.
 
 - Only one special character `@` which separates HTML code from the programmable part of the template
 - The ability to use Java in the template. No need to learn a new syntax, language or utilities. You can use the language you already know and love
 - Fragments and component-based development. Create reusable components which you can reference between templates
-- Reverse routing for Spring. You can change the URL of a web-page without the need to modify your template files. Phoenix will compute the URLs at runtime based on existing controllers
-- Lighting fast and lightweight. Phoenix is orders of magnitude faster than Thymeleaf for rendering pages. This is achieved by compiling the template files, instead of interpreting them. See the benchmarks below.
+- Reverse routing for Spring. You can change the URL of a web-page without the need to modify your template files. Flamewing will compute the URLs at runtime based on existing controllers
+- Lighting fast and lightweight. Flamewing is orders of magnitude faster than Thymeleaf for rendering pages. This is achieved by compiling the template files, instead of interpreting them. See the benchmarks below.
 - **More features in development**
 
-For more deatails, examples and documentation, visit the [Phoenix website](https://pazvanti.github.io/Phoenix/index.htmlx)
+For more deatails, examples and documentation, visit the [Flamewing website](https://pazvanti.github.io/Flamewing/index.html)
 
 ## Sample template
 
-Here is a simple template that showcases a few key features of Phoenix.
+Here is a simple template that showcases a few key features of Flamewing.
 
 ```html
 @import java.util.List;
@@ -43,9 +43,9 @@ Here is a simple template that showcases a few key features of Phoenix.
 </body>
 ```
 
-## Phoenix elements
+## Flamewing elements
 
-Phoenix comes with an easy-to-use syntax that allows you to write Java code directly in the HTML template file. The special `@` character indicates non-HTML code that will be transformed into Java code and compiled. Still, there are a few limitations (at least in its current state).
+Flamewing comes with an easy-to-use syntax that allows you to write Java code directly in the HTML template file. The special `@` character indicates non-HTML code that will be transformed into Java code and compiled. Still, there are a few limitations (at least in its current state).
 
 ### Arguments (constructor)
 
@@ -91,7 +91,7 @@ Example:
 }
 ```
 
-Phoenix also supports `for-each` loops:
+Flamewing also supports `for-each` loops:
 ```html
 @for (String item:items) {
 <span>@item</span>
@@ -123,7 +123,7 @@ Example:
 ### CSRF 
 #### CSRF Input
 
-Phoenix requires Spring Security and allows generating of CSRF input fields for forms. This is done using the `@input.csrf()` helper.
+Flamewing requires Spring Security and allows generating of CSRF input fields for forms. This is done using the `@input.csrf()` helper.
 
 Example:
 
@@ -142,7 +142,7 @@ This will generate two meta tags, one containing the CSRF token and another one 
 
 Example:
 
-| Phoenix 	      | Generated HTML 	                                                                                 | 
+| Flamewing 	      | Generated HTML 	                                                                                 | 
 |----------------|--------------------------------------------------------------------------------------------------|
 | `@csrf.meta()` | `<meta name="_csrf" content="token">`<br/> `<meta name="_csrf_header" content="X-CSRF-TOKEN">` |
 
@@ -154,7 +154,7 @@ If you only need to include the token and not the header name, you can do so by 
 
 ### Routes and reverse-routing
 
-Phoenix allows you to build links and URLs to other pages of your application with ease by implementing reverse routing. The template engine determines the controllers that are present in your applciationg and allows you to use them in the template files. In case the path changes, Phoenix will calculate the new path without the need to change the template files, as long as the controller stays the same. And yes, dynamic URLs with `@PathVariable` and `@RequestParam` is possible. All routes start with `@routes.` and are followed by the controller file name and the method name. If the URL has a dynamic part, you can provide the variables that will compute that part as input parameters.
+Flamewing allows you to build links and URLs to other pages of your application with ease by implementing reverse routing. The template engine determines the controllers that are present in your applciationg and allows you to use them in the template files. In case the path changes, Flamewing will calculate the new path without the need to change the template files, as long as the controller stays the same. And yes, dynamic URLs with `@PathVariable` and `@RequestParam` is possible. All routes start with `@routes.` and are followed by the controller file name and the method name. If the URL has a dynamic part, you can provide the variables that will compute that part as input parameters.
 
 Example simple route: ```<a href="@routes.TestController.renderJson()">Go to JSON page</a>```
 
@@ -201,11 +201,11 @@ Passing it to a fragment. More information on using fragments further down.
 
 ### Break
 
-Phoenix provides a `@break` element which can be used to exit a loop
+Flamewing provides a `@break` element which can be used to exit a loop
 
 ### Null-safety operators
 
-Phoenix supports two null-safety operators:
+Flamewing supports two null-safety operators:
 
 The null-safety ternary operator can be used to asses if a variable or method call returns `null` and provide an alternative
 ```html
@@ -221,7 +221,7 @@ If you don't want to provide any alternative, and just to protect from `NullPoin
 
 ### Fragments
 
-Phoenix allows the creation of reusable components. This is done by having one file for each component that has the same rules as any other template file. After that, you can reference it inside other templates.
+Flamewing allows the creation of reusable components. This is done by having one file for each component that has the same rules as any other template file. After that, you can reference it inside other templates.
 
 For example, inside my `views` folder I have a directory named `menu` where I have a template for the administrator's menu. From my main template, I can reference it like this:
 ```html
@@ -232,7 +232,7 @@ Now, when my main template is called, it will automatically render the HTML code
 
 Fragments can have arguments which can be passed to the `template()` method call. 
 
-If a fragment has an argument of type `PhoenixContent`, it can be provided as a nested element:
+If a fragment has an argument of type `FlamewingContent`, it can be provided as a nested element:
 
 ```html
 @fragments.withContent.template(a) {
@@ -241,7 +241,7 @@ If a fragment has an argument of type `PhoenixContent`, it can be provided as a 
 }
 ```
 
-Since content blocks are also of type `PhoenixContent`, they can be passed as arguments to templates as well. In case a template has multiple arguments of type `PhoenixContent`, the last one can be ommited and provided as a nested element
+Since content blocks are also of type `FlamewingContent`, they can be passed as arguments to templates as well. In case a template has multiple arguments of type `FlamewingContent`, the last one can be ommited and provided as a nested element
 
 ```html
 @myVar => {
@@ -255,9 +255,9 @@ Since content blocks are also of type `PhoenixContent`, they can be passed as ar
 }
 ```
 
-## The `PhoenixController`, the `Result` and the `View`
+## The `FlamewingController`, the `Result` and the `View`
 
-Each controller in your application that wants to use Phoenix must extend the `PhoenixController` class. This will allow the engine to properly generate reverse-routes for the controllers. Additionally, it will allow you to easily return either an HTML page or a JSON object. This is because all Phoenix controllers must return a `Result`. Don't worry, `PhoenixController` provides helper methods for this via the `ok()`, `notFound()` and `withHttpStatus()` methods.
+Each controller in your application that wants to use Flamewing must extend the `FlamewingController` class. This will allow the engine to properly generate reverse-routes for the controllers. Additionally, it will allow you to easily return either an HTML page or a JSON object. This is because all Flamewing controllers must return a `Result`. Don't worry, `FlamewingController` provides helper methods for this via the `ok()`, `notFound()` and `withHttpStatus()` methods.
 
 To return an HTML page, you must call the `View.of()` method and provide template name (without `.java.html`) and it's input parameters.
 
@@ -265,7 +265,7 @@ Below is an example controller:
 
 ```java
 @Controller
-public class TestController extends PhoenixController {
+public class TestController extends FlamewingController {
 
     @GetMapping("/test.html")
     public Result renderTest(@RequestParam(name = "a", defaultValue = "0") int a,
@@ -287,10 +287,10 @@ public class TestController extends PhoenixController {
 
 ## Configuration options
 
-All configuration options are under the `phoenix` tag.
+All configuration options are under the `flamewing` tag.
 
 ```yaml
-phoenix:
+flamewing:
     controllersPackage: "com.example.demo.controllers"
     viewsPath: classpath*:views
     errorPages:
@@ -312,7 +312,7 @@ spring:
 
 The following benchmarks were run on my machine for an HTML page that renders 50_000 div elements. Your results may vary, depending on hardware configuration. The templates used are:
 
-Phoenix:
+Flamewing:
 ```html
 @constructor(String title, int divCount)
 
@@ -323,7 +323,7 @@ Phoenix:
     </head>
     <body>
 
-        <h1>Phoenix Template</h1>
+        <h1>Flamewing Template</h1>
         <p>This is a blank template for a web page.</p>
         @for(int i = 0; i<divCount; i++) {
             <div class="benchmark"> Rendering a div (num <span>@i</span>)</div>
@@ -354,13 +354,13 @@ Results:
 
 |           	| First render 	| Next renders 	 |
 |-----------	|--------------	|----------------|
-| Phoenix   	| 54ms         	| 9ms          	 |
+| Flamewing   	| 54ms         	| 9ms          	 |
 | Thymeleaf 	| 303ms        	| 51ms         	 |
 
 
-## Using Phoenix
+## Using Flamewing
 
-Phoenix is not ready for prime use yet. Still, if you want to experiment with it, you can do so by downloading the source code and executing the `gradle assemble` task. This will generate a `phoenix-0.0.1-SNAPSHOT-plain.jar` which you can import in your project.
+Flamewing is not ready for prime use yet. Still, if you want to experiment with it, you can do so by downloading the source code and executing the `gradle assemble` task. This will generate a `flamewing-0.0.1-SNAPSHOT-plain.jar` which you can import in your project.
 
 Additionally, the following other dependencies are required:
 ```gradle
@@ -368,12 +368,12 @@ implementation 'org.springframework.boot:spring-boot-starter-web'
 implementation 'org.springframework.boot:spring-boot-starter-security'
 ```
 
-Finally, create a configuration file for your Spring Boot app and import the `PhoenixConfig` configuration:
+Finally, create a configuration file for your Spring Boot app and import the `FlamewingConfig` configuration:
 
 ```java
 @Configuration
 @EnableConfigurationProperties()
-@Import({PhoenixConfig.class})
+@Import({FlamewingConfig.class})
 public class ApplicationConfiguration {
     
 }

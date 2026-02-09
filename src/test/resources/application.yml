@@ -1,4 +1,4 @@
-phoenix:
+flamewing:
   controllersPackage: "test.controllers"
   views:
     path: src/test/resources/views

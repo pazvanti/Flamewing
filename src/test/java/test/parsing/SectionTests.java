@@ -3,19 +3,19 @@ package test.parsing;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import tech.petrepopescu.phoenix.controllers.FragmentController;
-import tech.petrepopescu.phoenix.parser.ElementFactory;
-import tech.petrepopescu.phoenix.parser.PhoenixParser;
-import tech.petrepopescu.phoenix.parser.compiler.Compiler;
-import tech.petrepopescu.phoenix.parser.compiler.DynamicClassLoader;
-import tech.petrepopescu.phoenix.parser.route.RouteGenerator;
-import tech.petrepopescu.phoenix.special.PhoenixSpecialElementsUtil;
-import tech.petrepopescu.phoenix.spring.PhoenixErrorHandler;
-import tech.petrepopescu.phoenix.spring.PhoenixMessageConverter;
-import tech.petrepopescu.phoenix.spring.SecurityConfig;
-import tech.petrepopescu.phoenix.spring.config.PhoenixConfiguration;
-import tech.petrepopescu.phoenix.spring.config.ViewsConfiguration;
-import tech.petrepopescu.phoenix.views.View;
+import tech.petrepopescu.flamewing.controllers.FragmentController;
+import tech.petrepopescu.flamewing.parser.ElementFactory;
+import tech.petrepopescu.flamewing.parser.FlamewingParser;
+import tech.petrepopescu.flamewing.parser.compiler.Compiler;
+import tech.petrepopescu.flamewing.parser.compiler.DynamicClassLoader;
+import tech.petrepopescu.flamewing.parser.route.RouteGenerator;
+import tech.petrepopescu.flamewing.special.FlamewingSpecialElementsUtil;
+import tech.petrepopescu.flamewing.spring.FlamewingErrorHandler;
+import tech.petrepopescu.flamewing.spring.FlamewingMessageConverter;
+import tech.petrepopescu.flamewing.spring.SecurityConfig;
+import tech.petrepopescu.flamewing.spring.config.FlamewingConfiguration;
+import tech.petrepopescu.flamewing.spring.config.ViewsConfiguration;
+import tech.petrepopescu.flamewing.views.View;
 import tech.petrepopescu.utils.ReadFileUtil;
 
 import java.io.File;
@@ -26,9 +26,9 @@ import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@SpringBootTest(classes = {SecurityConfig.class, PhoenixMessageConverter.class, RouteGenerator.class, Compiler.class, ElementFactory.class,
-        DynamicClassLoader.class, PhoenixConfiguration.class, PhoenixSpecialElementsUtil.class, FragmentController.class,
-        PhoenixErrorHandler.class})
+@SpringBootTest(classes = {SecurityConfig.class, FlamewingMessageConverter.class, RouteGenerator.class, Compiler.class, ElementFactory.class,
+        DynamicClassLoader.class, FlamewingConfiguration.class, FlamewingSpecialElementsUtil.class, FragmentController.class,
+        FlamewingErrorHandler.class})
 class SectionTests {
     @Autowired
     private Compiler compiler;
@@ -37,15 +37,15 @@ class SectionTests {
     private RouteGenerator routeGenerator;
 
     @Autowired
-    private PhoenixSpecialElementsUtil phoenixSpecialElementsUtil;
+    private FlamewingSpecialElementsUtil flamewingSpecialElementsUtil;
 
     @Test
     void test() throws Exception {
-        PhoenixConfiguration phoenixConfiguration = new PhoenixConfiguration();
-        phoenixConfiguration.setViews(new ViewsConfiguration());
-        phoenixConfiguration.getViews().setPath("src/test/resources/section");
+        FlamewingConfiguration flamewingConfiguration = new FlamewingConfiguration();
+        flamewingConfiguration.setViews(new ViewsConfiguration());
+        flamewingConfiguration.getViews().setPath("src/test/resources/section");
 
-        PhoenixParser parser = new PhoenixParser(new ElementFactory(null), routeGenerator, compiler, phoenixConfiguration);
+        FlamewingParser parser = new FlamewingParser(new ElementFactory(null), routeGenerator, compiler, flamewingConfiguration);
         parser.parse();
 
         Map<String, List<Object>> tests = new HashMap<>();
@@ -60,7 +60,7 @@ class SectionTests {
         tests.put("sectionTestWithLoop", List.of(1));
 
         for (Map.Entry<String, List<Object>> entry : tests.entrySet()) {
-            String htmlContent = View.of(entry.getKey(), entry.getValue().toArray(new Object[0])).getContent(phoenixSpecialElementsUtil);
+            String htmlContent = View.of(entry.getKey(), entry.getValue().toArray(new Object[0])).getContent(flamewingSpecialElementsUtil);
             String expected = ReadFileUtil.readFileToString(new File("src/test/resources/section/expected/" + entry.getKey() + ".html"), Charset.defaultCharset());
             assertEquals(expected, htmlContent, "Failed for test: " + entry.getKey());
         }
