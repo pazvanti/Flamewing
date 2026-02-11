@@ -11,7 +11,12 @@ public class VariableRegistry {
     private final Map<String, String> staticString = new HashMap<>();
     private static final VariableRegistry INSTANCE = new VariableRegistry();
     private VariableRegistry() {
-        argumentsByFileAndType  = new HashMap<>();
+        argumentsByFileAndType = new HashMap<>();
+    }
+
+    public void reset() {
+        argumentsByFileAndType.clear();
+        staticString.clear();
     }
 
     public static VariableRegistry getInstance() {

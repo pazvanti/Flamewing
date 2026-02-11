@@ -10,7 +10,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import tech.petrepopescu.flamewing.controllers.FragmentController;
 import tech.petrepopescu.flamewing.parser.ElementFactory;
 import tech.petrepopescu.flamewing.parser.FlamewingParser;
-import tech.petrepopescu.flamewing.parser.compiler.Compiler;
+import tech.petrepopescu.flamewing.parser.compiler.FlamewingCompilerImpl;
 import tech.petrepopescu.flamewing.parser.compiler.DynamicClassLoader;
 import tech.petrepopescu.flamewing.parser.route.RouteGenerator;
 import tech.petrepopescu.flamewing.special.FlamewingSpecialElementsUtil;
@@ -20,7 +20,7 @@ import java.util.List;
 
 @Configuration
 @EnableConfigurationProperties
-@Import({SecurityConfig.class, FlamewingMessageConverter.class, RouteGenerator.class, Compiler.class, ElementFactory.class,
+@Import({SecurityConfig.class, FlamewingMessageConverter.class, RouteGenerator.class, FlamewingCompilerImpl.class, ElementFactory.class,
         DynamicClassLoader.class, FlamewingConfiguration.class, FlamewingSpecialElementsUtil.class, FragmentController.class,
         FlamewingErrorHandler.class})
 public class FlamewingConfig implements WebMvcConfigurer {
@@ -36,7 +36,7 @@ public class FlamewingConfig implements WebMvcConfigurer {
     }
 
     @Bean
-    public FlamewingParser templateParser(RouteGenerator routeGenerator, ElementFactory elementFactory, Compiler compiler, FlamewingConfiguration configuration) {
+    public FlamewingParser templateParser(RouteGenerator routeGenerator, ElementFactory elementFactory, FlamewingCompilerImpl compiler, FlamewingConfiguration configuration) {
         FlamewingParser flamewingParser = new FlamewingParser(elementFactory, routeGenerator, compiler, configuration);
         flamewingParser.parse();
         return flamewingParser;

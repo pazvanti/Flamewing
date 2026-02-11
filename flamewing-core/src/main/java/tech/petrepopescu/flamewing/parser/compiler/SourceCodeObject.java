@@ -9,6 +9,7 @@ public class SourceCodeObject extends SimpleJavaFileObject {
     private final String sourceCode;
     private final boolean templateFile;
     private final String fullClassName;
+    private final String basePackage;
 
 
     public SourceCodeObject(String className, String sourceCode, String basePackage) {
@@ -19,6 +20,7 @@ public class SourceCodeObject extends SimpleJavaFileObject {
         super(URI.create("string:///" + className.replace('.', '/') + Kind.SOURCE.extension), Kind.SOURCE);
         this.sourceCode = sourceCode;
         this.templateFile = templateFile;
+        this.basePackage = basePackage;
         if (StringUtils.endsWith(basePackage, ".")) {
             fullClassName = basePackage  + className;
         } else {
@@ -37,5 +39,13 @@ public class SourceCodeObject extends SimpleJavaFileObject {
 
     public String getFullClassName() {
         return fullClassName;
+    }
+
+    public String getContent() {
+        return sourceCode;
+    }
+
+    public String getBasePackage() {
+        return basePackage;
     }
 }

@@ -92,7 +92,12 @@ public final class View {
             Method method = null;
             Class<?> viewClass = VIEW_CLASSES.get(viewName);
             if (viewClass == null) {
-                return null;
+                try {
+                    viewClass = Class.forName("views.html." + viewName);
+                    VIEW_CLASSES.put(viewName, viewClass);
+                } catch (ClassNotFoundException e) {
+                    return null;
+                }
             }
             for (Method m : viewClass.getDeclaredMethods()) {
                 if (m.getName().equals("render") && m.getParameterCount() == numArgs) {
@@ -109,5 +114,10 @@ public final class View {
 
     public static void add(Class<?> resultedClass, String viewName) {
         VIEW_CLASSES.put(StringUtils.replace(viewName, "views.html.", ""), resultedClass);
+    }
+
+    public static void reset() {
+        VIEW_CLASSES.clear();
+        RENDER_METHODS.clear();
     }
 }

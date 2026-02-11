@@ -13,8 +13,8 @@ import java.util.List;
 import java.util.Map;
 
 @Component
-public class Compiler extends FlamewingCompiler {
-    private static final org.slf4j.Logger log = org.slf4j.LoggerFactory.getLogger(Compiler.class);
+public class FlamewingCompilerImpl extends FlamewingCompiler {
+    private static final org.slf4j.Logger log = org.slf4j.LoggerFactory.getLogger(FlamewingCompilerImpl.class);
 
     private final JavaCompiler javaCompiler;
 
@@ -23,11 +23,21 @@ public class Compiler extends FlamewingCompiler {
     private final ByteCodeGeneratingFileManager fileManager;
     private final List<String> loadedClasses = new ArrayList<>();
 
-    public Compiler(DynamicClassLoader dynamicClassLoader) {
+    public FlamewingCompilerImpl(DynamicClassLoader dynamicClassLoader) {
         this.dynamicClassLoader = dynamicClassLoader;
         this.javaCompiler = ToolProvider.getSystemJavaCompiler();
-        this.diagnostics = new DiagnosticCollector<>();
-        this.fileManager = new ByteCodeGeneratingFileManager(javaCompiler.getStandardFileManager(diagnostics, null, null));
+        if (this.javaCompiler == null) {
+            log.warn("No system Java compiler found. Dynamic compilation will be disabled.");
+            this.diagnostics = null;
+            this.fileManager = null;
+        } else {
+            this.diagnostics = new DiagnosticCollector<>();
+            this.fileManager = new ByteCodeGeneratingFileManager(javaCompiler.getStandardFileManager(diagnostics, null, null));
+        }
+    }
+
+    public boolean isJdkPresent() {
+        return this.javaCompiler != null;
     }
 
     public void compileAndLoad(List<JavaFileObject> javaFileObjects) {
@@ -55,6 +65,11 @@ public class Compiler extends FlamewingCompiler {
         if (CollectionUtils.isEmpty(javaFileObjects)) {
             log.warn("Nothing to compile");
             return;
+        }
+
+        if (this.javaCompiler == null) {
+            log.error("Cannot compile as no JDK is present. Please ensure you have pre-compiled the templates.");
+            throw new CompilationException("No JDK present for dynamic compilation.");
         }
 
         // Compile the code

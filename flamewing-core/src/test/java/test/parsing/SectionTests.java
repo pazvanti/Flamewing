@@ -6,8 +6,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import tech.petrepopescu.flamewing.controllers.FragmentController;
 import tech.petrepopescu.flamewing.parser.ElementFactory;
 import tech.petrepopescu.flamewing.parser.FlamewingParser;
-import tech.petrepopescu.flamewing.parser.compiler.Compiler;
+import tech.petrepopescu.flamewing.parser.compiler.FlamewingCompiler;
 import tech.petrepopescu.flamewing.parser.compiler.DynamicClassLoader;
+import tech.petrepopescu.flamewing.parser.compiler.FlamewingCompilerImpl;
 import tech.petrepopescu.flamewing.parser.route.RouteGenerator;
 import tech.petrepopescu.flamewing.special.FlamewingSpecialElementsUtil;
 import tech.petrepopescu.flamewing.spring.FlamewingErrorHandler;
@@ -26,12 +27,12 @@ import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@SpringBootTest(classes = {SecurityConfig.class, FlamewingMessageConverter.class, RouteGenerator.class, Compiler.class, ElementFactory.class,
+@SpringBootTest(classes = {SecurityConfig.class, FlamewingMessageConverter.class, RouteGenerator.class, FlamewingCompilerImpl.class, ElementFactory.class,
         DynamicClassLoader.class, FlamewingConfiguration.class, FlamewingSpecialElementsUtil.class, FragmentController.class,
         FlamewingErrorHandler.class})
 class SectionTests {
     @Autowired
-    private Compiler compiler;
+    private FlamewingCompilerImpl compiler;
 
     @Autowired
     private RouteGenerator routeGenerator;

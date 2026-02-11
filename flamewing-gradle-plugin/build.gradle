@@ -1,0 +1,31 @@
+plugins {
+    id 'java-gradle-plugin'
+    id 'maven-publish'
+    id 'io.spring.dependency-management' version '1.1.3'
+}
+
+configurations {
+    all*.exclude module : 'spring-boot-starter-logging'
+    all*.exclude module : 'logback-classic'
+}
+
+dependencyManagement {
+    imports {
+        mavenBom "org.springframework.boot:spring-boot-dependencies:3.2.1"
+    }
+}
+
+dependencies {
+    implementation project(':flamewing-core')
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+}
+
+gradlePlugin {
+    plugins {
+        flamewingPlugin {
+            id = 'tech.petrepopescu.flamewing'
+            implementationClass = 'tech.petrepopescu.flamewing.gradle.FlamewingPlugin'
+        }
+    }
+}

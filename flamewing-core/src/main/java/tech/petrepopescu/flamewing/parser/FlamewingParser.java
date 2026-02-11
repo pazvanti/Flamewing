@@ -8,6 +8,7 @@ import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.core.io.support.ResourcePatternResolver;
 import tech.petrepopescu.flamewing.parser.compiler.SourceCodeObject;
 import tech.petrepopescu.flamewing.parser.route.RouteGenerator;
+import tech.petrepopescu.flamewing.views.View;
 
 import javax.tools.JavaFileObject;
 import java.io.File;
@@ -32,7 +33,27 @@ public class FlamewingParser {
     }
 
     public void parse() {
+        if (!compiler.isJdkPresent()) {
+            log.info("No JDK present. Skipping dynamic compilation of templates.");
+            return;
+        }
+        View.reset();
+        List<JavaFileObject> javaFileObjects = generateAllSources();
+        elementFactory.unknownFragmentsExists();
+        compiler.compileAndLoad(javaFileObjects);
+    }
+
+    public List<JavaFileObject> generateAllSources() {
+        VariableRegistry.getInstance().reset();
         List<JavaFileObject> javaFileObjects = new ArrayList<>(routeGenerator.generateRoutes());
+        List<TemplateFile> templateFiles = getAllTemplateFiles();
+
+        javaFileObjects.addAll(writeFiles(templateFiles));
+        javaFileObjects.add(buildStaticStringsFile());
+        return javaFileObjects;
+    }
+
+    public List<TemplateFile> getAllTemplateFiles() {
         final File viewsFolder;
         final StringBuilder basePackage = new StringBuilder(VIEWS_BASE_PACKAGE);
         List<TemplateFile> templateFiles = new ArrayList<>();
@@ -44,12 +65,7 @@ public class FlamewingParser {
             log.info("Parsing files in {}", viewsFolder.getPath());
             templateFiles.addAll(parseFilesInFolder(viewsFolder, basePackage));
         }
-
-        javaFileObjects.addAll(writeFiles(templateFiles));
-        javaFileObjects.add(buildStaticStringsFile());
-
-        elementFactory.unknownFragmentsExists();
-        compiler.compileAndLoad(javaFileObjects);
+        return templateFiles;
     }
 
     private List<JavaFileObject> writeFiles(List<TemplateFile> templateFiles) {
@@ -61,7 +77,7 @@ public class FlamewingParser {
         return javaFileObjects;
     }
 
-    private JavaFileObject buildStaticStringsFile() {
+    public JavaFileObject buildStaticStringsFile() {
         StringBuilder builder = new StringBuilder();
         builder.append("package ").append(VIEWS_BASE_PACKAGE).append(";\n\n");
         builder.append("public class StaticStrings {\n");
