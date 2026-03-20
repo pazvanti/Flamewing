@@ -10,6 +10,7 @@ public class FlamewingConfiguration {
     private ViewsConfiguration views = new ViewsConfiguration();
     private ErrorPages errorPages;
     private boolean fragmentRetrieveEnabled = false;
+    private boolean parseAtStartup = false;
 
     public String getControllersPackage() {
         return controllersPackage;
@@ -41,5 +42,13 @@ public class FlamewingConfiguration {
 
     public void setViews(ViewsConfiguration views) {
         this.views = views;
+    }
+
+    public void setParseAtStartup(boolean parseAtStartup) {
+        this.parseAtStartup = parseAtStartup;
+    }
+
+    public boolean shouldParseAtStartup() {
+        return this.parseAtStartup;
     }
 }

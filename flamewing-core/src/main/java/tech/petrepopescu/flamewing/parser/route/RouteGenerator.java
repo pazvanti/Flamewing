@@ -71,11 +71,21 @@ public class RouteGenerator {
 
     private String extractPackage(Class<?> controllerClass) {
         String packageName = controllerClass.getPackageName();
-        if (packageName.equals(config.getControllersPackage())) {
+        String configuredPackage = config.getControllersPackage();
+
+        if (StringUtils.isBlank(configuredPackage) || "com".equals(configuredPackage)) {
             return "routes";
         }
 
-        return "routes." + StringUtils.replace(controllerClass.getPackageName(), config.getControllersPackage() + ".", "");
+        if (packageName.equals(configuredPackage)) {
+            return "routes";
+        }
+
+        if (packageName.startsWith(configuredPackage + ".")) {
+            return "routes." + packageName.substring(configuredPackage.length() + 1);
+        }
+
+        return "routes";
     }
 
     private RoutePath parseAnnotation(String url, Method method, HttpMethod httpMethod) {

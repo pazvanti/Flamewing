@@ -70,7 +70,8 @@ public class AnnotationScanner {
     private void checkClassForAnnotation(String className, Class<? extends Annotation> annotation,
                                          Set<Class<?>> annotatedClasses) {
         try {
-            Class<?> clazz = Class.forName(className);
+            ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
+            Class<?> clazz = Class.forName(className, false, classLoader);
 
             if (clazz.isAnnotationPresent(annotation)) {
                 annotatedClasses.add(clazz);

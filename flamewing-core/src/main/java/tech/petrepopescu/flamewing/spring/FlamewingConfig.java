@@ -38,7 +38,9 @@ public class FlamewingConfig implements WebMvcConfigurer {
     @Bean
     public FlamewingParser templateParser(RouteGenerator routeGenerator, ElementFactory elementFactory, FlamewingCompilerImpl compiler, FlamewingConfiguration configuration) {
         FlamewingParser flamewingParser = new FlamewingParser(elementFactory, routeGenerator, compiler, configuration);
-        flamewingParser.parse();
+        if (configuration.shouldParseAtStartup()) {
+            flamewingParser.parse();
+        }
         return flamewingParser;
     }
 }
