@@ -1,0 +1,41 @@
+<idea-plugin>
+    <id>tech.petrepopescu.flamewing.idea</id>
+    <name>Flamewing Support</name>
+    <vendor email="admin@petrepopescu.tech" url="https://pazvanti.github.io/Flamewing/">Petre Popescu</vendor>
+
+    <description><![CDATA[
+      Provides language support for the Flamewing template engine (.java.html).
+      Includes syntax highlighting, auto-completion, and navigation (CTRL+Click) for Java controllers and elements.
+    ]]></description>
+
+    <depends>com.intellij.modules.platform</depends>
+    <depends>com.intellij.modules.java</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <fileType 
+            name="Flamewing File" 
+            implementationClass="tech.petrepopescu.flamewing.idea.FlamewingFileType" 
+            fieldName="INSTANCE" 
+            language="Flamewing" 
+            extensions="java.html"/>
+
+        <lang.parserDefinition 
+            language="Flamewing" 
+            implementationClass="tech.petrepopescu.flamewing.idea.FlamewingParserDefinition"/>
+
+        <lang.syntaxHighlighterFactory 
+            language="Flamewing" 
+            implementationClass="tech.petrepopescu.flamewing.idea.FlamewingHighlighterFactory"/>
+
+        <completion.contributor 
+            language="Flamewing" 
+            implementationClass="tech.petrepopescu.flamewing.idea.FlamewingCompletionContributor"/>
+
+        <!-- Used for linking string-based or @ routes back to Java methods -->
+        <psi.referenceContributor 
+            language="Flamewing" 
+            implementation="tech.petrepopescu.flamewing.idea.FlamewingReferenceContributor"/>
+
+        <postStartupActivity implementation="tech.petrepopescu.flamewing.idea.FlamewingStartupActivity" />
+    </extensions>
+</idea-plugin>

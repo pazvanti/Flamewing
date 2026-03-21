@@ -1,0 +1,27 @@
+plugins {
+    id 'java'
+    id 'org.jetbrains.intellij' version '1.17.2'
+}
+
+group = 'tech.petrepopescu.flamewing.idea'
+version = '1.0.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // You could depend on flamewing-core to access some constants if needed, but typically idea plugins avoid it 
+    // to prevent classloader issues or bundling the whole project unless necessary.
+}
+
+intellij {
+    version = '2023.2.5' // Target IntelliJ IDEA version
+    type = 'IC'
+    plugins = ['java'] // We need Java support for Controller reference navigation
+}
+
+tasks.withType(JavaCompile) {
+    sourceCompatibility = '17'
+    targetCompatibility = '17'
+}

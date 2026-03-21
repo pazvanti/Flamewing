@@ -1,3 +1,4 @@
 rootProject.name = 'flamewing'
 include 'flamewing-core'
 include 'flamewing-gradle-plugin'
+include 'flamewing-intellij-plugin'
