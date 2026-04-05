@@ -101,12 +101,17 @@ public class RouteGenerator {
                 if (StringUtils.isBlank(varName)) {
                     varName = pathVariable.value();
                 }
+                if (StringUtils.isBlank(varName)) {
+                    varName = param.getName();
+                }
                 pathVariables.add(
                         RouteVariable.builder()
                                 .name(varName)
                                 .varName(varName)
                                 .varType(param.getType())
+                                .required(pathVariable.required())
                                 .build()
+
                 );
             }
 
@@ -116,12 +121,17 @@ public class RouteGenerator {
                 if (StringUtils.isBlank(varName)) {
                     varName = requestParam.value();
                 }
+                if (StringUtils.isBlank(varName)) {
+                    varName = param.getName();
+                }
                 requestVariables.add(
                         RouteVariable.builder()
                                 .name(varName)
                                 .varName(varName)
                                 .varType(param.getType())
+                                .required(requestParam.required())
                                 .build()
+
                 );
             }
         }
@@ -137,7 +147,7 @@ public class RouteGenerator {
                 .build();
     }
 
-    private String getFileContent(String name, String classPackage, List<RoutePath> paths) {
+    String getFileContent(String name, String classPackage, List<RoutePath> paths) {
         StringBuilder builder = new StringBuilder();
         builder.append("package ").append(classPackage).append(";\n\n");
         builder.append("import org.springframework.web.servlet.support.ServletUriComponentsBuilder;\n");
@@ -147,19 +157,32 @@ public class RouteGenerator {
         builder.append("\tprivate static final String BASE_ROUTE = ServletUriComponentsBuilder.fromCurrentContextPath().build().toUriString();\n\n");
 
         for(RoutePath path:paths) {
-            builder.append("\tpublic static Route " + getMethodSignature(path) + " {\n");
-            builder.append("\t\treturn Route.of(BASE_ROUTE + \"" + getUrl(path) + "\", HttpMethod." + path.getMethod() + ");\n");
+            boolean hasOptional = path.getRequestVariables().stream().anyMatch(v -> !v.isRequired()) ||
+                    path.getPathVariables().stream().anyMatch(v -> !v.isRequired());
+
+            if (hasOptional) {
+                builder.append("\tpublic static Route " + getMethodSignature(path, true) + " {\n");
+                builder.append("\t\treturn Route.of(BASE_ROUTE + \"" + getUrl(path, true) + "\", HttpMethod." + path.getMethod() + ");\n");
+                builder.append("\t}\n\n");
+            }
+
+            builder.append("\tpublic static Route " + getMethodSignature(path, false) + " {\n");
+            builder.append("\t\treturn Route.of(BASE_ROUTE + \"" + getUrl(path, false) + "\", HttpMethod." + path.getMethod() + ");\n");
             builder.append("\t}\n");
         }
+
 
         builder.append("}\n");
 
         return builder.toString();
     }
 
-    private String getMethodSignature(RoutePath path) {
+    String getMethodSignature(RoutePath path, boolean mandatoryOnly) {
         StringBuilder varBuilder = new StringBuilder();
         for (RouteVariable pathVar:path.getPathVariables()) {
+            if (mandatoryOnly && !pathVar.isRequired()) {
+                continue;
+            }
             if (!StringUtils.isEmpty(varBuilder)) {
                 varBuilder.append(", ");
             }
@@ -167,6 +190,9 @@ public class RouteGenerator {
         }
 
         for (RouteVariable pathVar:path.getRequestVariables()) {
+            if (mandatoryOnly && !pathVar.isRequired()) {
+                continue;
+            }
             if (!StringUtils.isEmpty(varBuilder)) {
                 varBuilder.append(", ");
             }
@@ -176,15 +202,22 @@ public class RouteGenerator {
         return path.getName() + "(" + varBuilder + ")";
     }
 
-    private String getUrl(RoutePath path) {
+
+    String getUrl(RoutePath path, boolean mandatoryOnly) {
         String fullUrl = path.getUrl();
 
         for (RouteVariable pathVar:path.getPathVariables()) {
+            if (mandatoryOnly && !pathVar.isRequired()) {
+                continue;
+            }
             fullUrl = StringUtils.replace(fullUrl, "{" + pathVar.getName() + "}", "\" + " + pathVar.getVarName() + " + \"");
         }
 
         StringBuilder requestArgsBuilder = new StringBuilder();
         for (RouteVariable pathVar:path.getRequestVariables()) {
+            if (mandatoryOnly && !pathVar.isRequired()) {
+                continue;
+            }
             if (!StringUtils.isEmpty(requestArgsBuilder)) {
                 requestArgsBuilder.append("&");
             }
@@ -198,4 +231,5 @@ public class RouteGenerator {
 
         return fullUrl + "?" + requestArgsBuilder;
     }
+
 }
