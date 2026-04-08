@@ -29,35 +29,52 @@ public class RouteGenerator {
         Set<Class<?>> allControllers = annotationScanner.getTypesAnnotatedWith(Controller.class);
 
         for (Class<?> controllerClass:allControllers) {
+            RequestMapping classAnnotation = controllerClass.getAnnotation(RequestMapping.class);
+            String basePath = "";
+            if (classAnnotation != null) {
+                if (classAnnotation.value().length > 0) {
+                    basePath = classAnnotation.value()[0];
+                } else if (classAnnotation.path().length > 0) {
+                    basePath = classAnnotation.path()[0];
+                }
+            }
+
             List<RoutePath> paths = new ArrayList<>();
             for (Method m:controllerClass.getMethods()) {
                 GetMapping getAnnotation = m.getAnnotation(GetMapping.class);
                 if (getAnnotation != null) {
+                    String methodPath = "";
                     if (getAnnotation.value().length > 0) {
-                        paths.add(parseAnnotation(getAnnotation.value()[0], m, HttpMethod.GET));
+                        methodPath = getAnnotation.value()[0];
                     } else if (getAnnotation.path().length > 0) {
-                        paths.add(parseAnnotation(getAnnotation.path()[0], m, HttpMethod.GET));
+                        methodPath = getAnnotation.path()[0];
                     }
+                    paths.add(parseAnnotation(combinePaths(basePath, methodPath), m, HttpMethod.GET));
                 }
 
                 PostMapping postAnnotation = m.getAnnotation(PostMapping.class);
                 if (postAnnotation != null) {
+                    String methodPath = "";
                     if (postAnnotation.value().length > 0) {
-                        paths.add(parseAnnotation(postAnnotation.value()[0], m, HttpMethod.POST));
+                        methodPath = postAnnotation.value()[0];
                     } else if (postAnnotation.path().length > 0) {
-                        paths.add(parseAnnotation(postAnnotation.path()[0], m, HttpMethod.POST));
+                        methodPath = postAnnotation.path()[0];
                     }
+                    paths.add(parseAnnotation(combinePaths(basePath, methodPath), m, HttpMethod.POST));
                 }
 
                 PutMapping putAnnotation = m.getAnnotation(PutMapping.class);
                 if (putAnnotation != null) {
+                    String methodPath = "";
                     if (putAnnotation.value().length > 0) {
-                        paths.add(parseAnnotation(putAnnotation.value()[0], m, HttpMethod.PUT));
+                        methodPath = putAnnotation.value()[0];
                     } else if (putAnnotation.path().length > 0) {
-                        paths.add(parseAnnotation(putAnnotation.path()[0], m, HttpMethod.PUT));
+                        methodPath = putAnnotation.path()[0];
                     }
+                    paths.add(parseAnnotation(combinePaths(basePath, methodPath), m, HttpMethod.PUT));
                 }
             }
+
 
             String controllerClassName = controllerClass.getSimpleName();
             String controllerBasePackage = extractPackage(controllerClass);
@@ -231,5 +248,30 @@ public class RouteGenerator {
 
         return fullUrl + "?" + requestArgsBuilder;
     }
+
+    String combinePaths(String base, String methodPath) {
+        if (StringUtils.isBlank(base)) {
+            return methodPath;
+        }
+        if (StringUtils.isBlank(methodPath)) {
+            return base;
+        }
+
+        String result = base;
+        if (!result.startsWith("/")) {
+            result = "/" + result;
+        }
+        if (result.endsWith("/")) {
+            result = result.substring(0, result.length() - 1);
+        }
+
+        String mPath = methodPath;
+        if (!mPath.startsWith("/")) {
+            mPath = "/" + mPath;
+        }
+
+        return result + mPath;
+    }
+
 
 }

@@ -141,5 +141,19 @@ class RouteGeneratorTest {
         }
         assertEquals(1, count);
     }
+
+    @Test
+    void testCombinePaths() {
+        RouteGenerator generator = new RouteGenerator(mock(FlamewingConfiguration.class));
+
+        assertEquals("/api/users", generator.combinePaths("/api", "/users"));
+        assertEquals("/api/users", generator.combinePaths("/api", "users"));
+        assertEquals("/api/users", generator.combinePaths("api", "/users"));
+        assertEquals("/api/users", generator.combinePaths("api", "users"));
+        assertEquals("/api/users", generator.combinePaths("/api/", "/users"));
+        assertEquals("/users", generator.combinePaths("", "/users"));
+        assertEquals("/api", generator.combinePaths("/api", ""));
+    }
 }
+
 
