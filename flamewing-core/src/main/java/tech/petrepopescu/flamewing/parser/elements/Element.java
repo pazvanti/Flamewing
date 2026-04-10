@@ -8,7 +8,7 @@ import java.util.List;
 
 public abstract class Element {
     public static final String DEFAULT_SECTION_NAME = "html";
-    private static final List<Character> END_CHARACTERS = List.of('\n', '\r', ' ', '\'', '\"', '<', ';', '/', ']', ' ');
+    private static final List<Character> END_CHARACTERS = List.of('\n', '\r', ' ', '\'', '\"', '<', ';', '/', ']', ' ', ',');
 
     protected final ElementFactory elementFactory;
     protected final List<String> lines;

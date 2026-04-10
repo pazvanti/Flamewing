@@ -124,4 +124,22 @@ class HtmlElementTests {
 
         Assertions.assertEquals(expected, TestUtil.sanitizeResult(element.write().toString()));
     }
+
+    @Test
+    void testMultipleVariablesWithMethodCalls() {
+        String line = "<span class=\"fw-semibold\">@project.getLatitude().toString().substring(0,6), @project.getLongitude().toString().substring(0,6)</span>";
+        HtmlElement element = new HtmlElement(List.of(line), 0, new ElementFactory(Set.of()), ElementFactory.DEFAULT_BUILDER_NAME);
+        VariableRegistry.getInstance().add("", "project", "Project");
+        element.parse("");
+
+        String expected = "\t\tcontentBuilder.append(\"<span class=\\\"fw-semibold\\\">\");\n" +
+                "\t\tcontentBuilder.append(Stringifier.toString(project.getLatitude().toString().substring(0,6)));\n" +
+                "\t\tcontentBuilder.append(\", \");\n" +
+                "\t\tcontentBuilder.append(Stringifier.toString(project.getLongitude().toString().substring(0,6)));\n" +
+                "\t\tcontentBuilder.append(\"</span>\");\n" +
+                "\t\tcontentBuilder.append(\"\\n\");\n";
+
+        Assertions.assertEquals(expected, TestUtil.sanitizeResult(element.write().toString()));
+    }
 }
+
