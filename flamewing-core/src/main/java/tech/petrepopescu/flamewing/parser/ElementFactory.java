@@ -31,7 +31,8 @@ public class ElementFactory {
                     new BreakElementBuilder(), new WithElementBuilder(), new EvalElementBuilder(), new RawElementBuilder(),
                     new NullSafeVariableElementBuilder(), new NullSafeTernaryElementBuilder(), new ContentBlockElementBuilder(),
                     new SectionElementBuilder(), new InsertAtElementBuilder(), new InsertOnceElementBuilder(),
-                    new ForWithIteratorElementBuilder(), fragmentOrStaticImportElementBuilder);
+                    new ForWithIteratorElementBuilder(), new NewElementBuilder(), fragmentOrStaticImportElementBuilder);
+
             elseElementBuilders = List.of(new ElseElementBuilder(), new ElseIfElementBuilder());
         } else {
             elseElementBuilders = elementBuilders.stream().filter(
