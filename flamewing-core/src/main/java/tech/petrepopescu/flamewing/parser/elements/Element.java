@@ -88,23 +88,32 @@ public abstract class Element {
         int end = start;
         int countOpenParentheses = 0;
         int countEndParentheses = 0;
+        int countOpenBrackets = 0;
+        int countEndBrackets = 0;
         int countQuote = 0;
         while (end < partialLine.length()) {
             char currentChar = partialLine.charAt(end);
             if (currentChar == '(') {
                 countOpenParentheses++;
-            }
-            if (currentChar == ')') {
-                countEndParentheses++;
+            } else if (currentChar == ')') {
+                if (countOpenParentheses > countEndParentheses) {
+                    countEndParentheses++;
+                }
+            } else if (currentChar == '[') {
+                countOpenBrackets++;
+            } else if (currentChar == ']') {
+                if (countOpenBrackets > countEndBrackets) {
+                    countEndBrackets++;
+                }
             }
             if (currentChar == '\"') {
                 countQuote++;
             }
-            if (endCharacters.contains(currentChar) && countEndParentheses == countOpenParentheses) {
-                if (currentChar == ')') {
-                    // If we end on `)` we need to include it as well since it is the end of a function call
+            if (endCharacters.contains(currentChar) && countEndParentheses == countOpenParentheses && countEndBrackets == countOpenBrackets) {
+                if ((currentChar == ')' && countOpenParentheses > 0) || (currentChar == ']' && countOpenBrackets > 0)) {
                     end++;
                 }
+
                 if (checkQuote) {
                     if (countQuote % 2 == 0) {
                         return end;
@@ -115,6 +124,7 @@ public abstract class Element {
             }
             end++;
         }
+
 
         return end;
     }

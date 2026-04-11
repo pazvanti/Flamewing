@@ -19,11 +19,12 @@ public class VariableElement extends Element {
         String variableName = StringUtils.substring(line, 1, elementEnd);
         if ("String".equals(VariableRegistry.getInstance().getType(fileName, variableName))) {
             this.evalExpression = "StringEscapeUtils.escapeHtml(" + variableName + ")";
-        } else if (StringUtils.contains(variableName, "(")) {
+        } else if (StringUtils.contains(variableName, "(") || StringUtils.contains(variableName, "[")) {
             this.evalExpression = "Stringifier.toString(" + variableName + ")";
         } else {
             this.evalExpression = variableName;
         }
+
         appendWithContentBuilder(this.evalExpression);
         discoverNextElement(StringUtils.substring(line, elementEnd), fileName);
         return this.lineNumber;

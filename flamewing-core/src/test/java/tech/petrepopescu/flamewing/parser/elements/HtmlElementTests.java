@@ -112,7 +112,7 @@ class HtmlElementTests {
     }
 
     @Test
-    void testStreamConcatInsidejavascript() {
+    void testStreamConcatInsideJavascript() {
         String line = "<script>let tags = [@raw(myTags.stream().map(tag -> '\\\"' + tag.trim() + '\\\"').collect(Collectors.joining(\",\")))];</script>";
         HtmlElement element = new HtmlElement(List.of(line), 0, new ElementFactory(Set.of()), ElementFactory.DEFAULT_BUILDER_NAME);
         element.parse("");
@@ -136,6 +136,21 @@ class HtmlElementTests {
                 "\t\tcontentBuilder.append(Stringifier.toString(project.getLatitude().toString().substring(0,6)));\n" +
                 "\t\tcontentBuilder.append(\", \");\n" +
                 "\t\tcontentBuilder.append(Stringifier.toString(project.getLongitude().toString().substring(0,6)));\n" +
+                "\t\tcontentBuilder.append(\"</span>\");\n" +
+                "\t\tcontentBuilder.append(\"\\n\");\n";
+
+        Assertions.assertEquals(expected, TestUtil.sanitizeResult(element.write().toString()));
+    }
+
+    @Test
+    void testArrayAccess() {
+        String line = "<span class=\"small fw-semibold lh-sm d-block\">@houseNames[i]</span>";
+        HtmlElement element = new HtmlElement(List.of(line), 0, new ElementFactory(Set.of()), ElementFactory.DEFAULT_BUILDER_NAME);
+        VariableRegistry.getInstance().add("", "houseNames", "String[]");
+        element.parse("");
+
+        String expected = "\t\tcontentBuilder.append(\"<span class=\\\"small fw-semibold lh-sm d-block\\\">\");\n" +
+                "\t\tcontentBuilder.append(Stringifier.toString(houseNames[i]));\n" +
                 "\t\tcontentBuilder.append(\"</span>\");\n" +
                 "\t\tcontentBuilder.append(\"\\n\");\n";
 
