@@ -139,7 +139,7 @@ public class TemplateFile extends FlamewingFileParser {
         for (FragmentOrStaticImportCallElement fragmentCallElement : fragmentCallElements) {
             if (fragmentCallElement.isFragment() && fragmentCallElement.getContentVariableName() != null) {
                 builder.append("\tprivate FlamewingContent ").append(fragmentCallElement.getContentVariableName())
-                        .append("() {\n");
+                        .append("(FlamewingSpecialElementsUtil specialElementsUtil) {\n");
                 builder.append(fragmentCallElement.getNestedElementsContent());
                 builder.append("\t\treturn ").append(fragmentCallElement.getContentVariableName()).append(";\n");
                 builder.append("\t}\n");

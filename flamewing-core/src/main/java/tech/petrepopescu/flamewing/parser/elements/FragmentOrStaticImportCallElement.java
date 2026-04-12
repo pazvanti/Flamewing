@@ -119,13 +119,13 @@ public class FragmentOrStaticImportCallElement extends NestedElement {
         if (indexOfParamStart + 1 == indexOfParamEnd) {
             // no arguments
             if (contentVariableName != null) {
-                call.append(", ").append(contentVariableName + "()");
+                call.append(", ").append(contentVariableName + "(specialElementsUtil)");
             }
             call.append(")");
         } else {
             call.append(", ").append(parameters);
             if (contentVariableName != null) {
-                call.append(", ").append(contentVariableName + "()");
+                call.append(", ").append(contentVariableName + "(specialElementsUtil)");
             }
             call.append(")");
         }
@@ -139,13 +139,13 @@ public class FragmentOrStaticImportCallElement extends NestedElement {
         if (indexOfParamStart + 1 == indexOfParamEnd) {
             // no arguments
             if (contentVariableName != null) {
-                call.append(", ").append(contentVariableName + "()");
+                call.append(", ").append(contentVariableName + "(specialElementsUtil)");
             }
             call.append(")");
         } else {
             call.append(", ").append(parameters);
             if (contentVariableName != null) {
-                call.append(", ").append(contentVariableName + "()");
+                call.append(", ").append(contentVariableName + "(specialElementsUtil)");
             }
             call.append(")");
         }
