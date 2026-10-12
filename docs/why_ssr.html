@@ -4,24 +4,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flamewing</title>
+    <title>Flamewing - Server-Side Rendering vs Client-Side Rendering</title>
+    <meta name="description" content="Explore the key benefits of Server-Side Rendering (SSR) over Client-Side Rendering (CSR) for Spring Boot applications.">
+    
+    <!-- Bootstrap & Icons -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    
+    <!-- Stylesheet -->
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" href="img/logo.svg" type="image/svg+xml">
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/java.min.js"></script>
 </head>
 
 <body>
 
-    <!-- Navbar -->
+    <!-- Sticky Navbar -->
     <nav class="navbar navbar-expand-lg sticky-top">
         <div class="container">
-            <a class="navbar-brand" href="index.html"><img src="img/logo.svg" alt="Flamewing Logo" width="40"
-                    style="margin-right: 4px;">Flamewing</a>
+            <a class="navbar-brand" href="index.html">
+                <img src="img/logo.svg" alt="Flamewing Logo" width="38" height="38">
+                <span>Flamewing</span>
+            </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -29,39 +32,43 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto align-items-center">
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="index.html">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" aria-current="page" target="_blank"
-                            href="https://github.com/pazvanti/Flamewing">Source Code</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" aria-current="page" target="_blank"
-                            href="https://github.com/pazvanti/Flamewing/issues">Issues tracker</a>
+                        <a class="nav-link" href="index.html">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="why_ssr.html">Why SSR?</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="benchmarks.html">Benchmarks</a>
+                    </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarCommunitiesDropdown" role="button"
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDocsDropdown" role="button"
                             data-bs-toggle="dropdown" aria-expanded="false">
                             Documentation
                         </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarCommunitiesDropdown">
-                            <li><a class="dropdown-item" href="gettingStarted.html">Getting started</a></li>
-                            <li><a class="dropdown-item" href="configuration.html">Configuration</a></li>
-                            <li><a class="dropdown-item" href="specialChar.html">The special `@` character</a></li>
-                            <li><a class="dropdown-item" href="flamewingResponse.html">The Flamewing response</a></li>
-                            <li><a class="dropdown-item" href="fragmentRetrieval.html">Fragment retrieval</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="elements.html">Syntax and elements</a></li>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDocsDropdown">
+                            <li><a class="dropdown-item" href="gettingStarted.html"><i class="bi bi-rocket-takeoff me-2 text-custom-orange"></i>Getting started</a></li>
+                            <li><a class="dropdown-item" href="configuration.html"><i class="bi bi-sliders me-2 text-custom-orange"></i>Configuration</a></li>
+                            <li><a class="dropdown-item" href="specialChar.html"><i class="bi bi-at me-2 text-custom-orange"></i>The special `@` character</a></li>
+                            <li><a class="dropdown-item" href="flamewingResponse.html"><i class="bi bi-arrow-return-right me-2 text-custom-orange"></i>The Flamewing response</a></li>
+                            <li><a class="dropdown-item" href="fragmentRetrieval.html"><i class="bi bi-puzzle me-2 text-custom-orange"></i>Fragment retrieval</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="elements.html"><i class="bi bi-code-slash me-2 text-custom-orange"></i>Syntax and elements</a></li>
                         </ul>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" target="_blank" rel="noopener noreferrer" href="https://github.com/pazvanti/Flamewing">
+                            <i class="bi bi-github me-1"></i>Source Code
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" target="_blank" rel="noopener noreferrer" href="https://github.com/pazvanti/Flamewing/issues">
+                            <i class="bi bi-bug me-1"></i>Issues tracker
+                        </a>
+                    </li>
                     <li class="nav-item ms-lg-3 mt-2 mt-lg-0">
-                        <a class="btn btn-custom-orange px-3 py-2"
-                            href="https://github.com/pazvanti/Flamewing/tree/main/releases">Download Flamewing</a>
+                        <a class="btn btn-flame px-3 py-2" href="https://github.com/pazvanti/Flamewing/tree/main/releases" target="_blank" rel="noopener noreferrer">
+                            <i class="bi bi-download"></i>Download Flamewing
+                        </a>
                     </li>
                 </ul>
             </div>
@@ -69,65 +76,86 @@
     </nav>
 
     <main>
-        <section class="py-5">
+        <section class="docs-container">
             <div class="container">
-                <p class="text-custom-orange section-subtitle  text-center">Here is how Flamewing can help</p>
-                <h2 class="section-title display-4 mb-5  text-center">Server-Side Rendering vs Client-Side Rendering:
-                    Key Benefits for Spring Boot Applications</h2>
-                <div class="row mt-4 p-1 text-white">
-                    <div class="col-md-12 d-flex">
-                        <div class="card p-4 w-100">
-                            <i class="bi bi-braces card-dropdown-icon"></i>
-                            <div class="card-icon text-center"><i class="bi bi-fire"></i></div>
-                            <div class="card-body p-0">
-                                <p>When building web applications with Spring Boot, developers can choose between
-                                    server-side rendering (SSR) and client-side JavaScript frameworks. While SPAs have
-                                    gained popularity, server-side rendering offers distinct advantages for many
-                                    applications.</p>
+                <div class="text-center mb-5">
+                    <p class="text-custom-orange section-subtitle">Here is how Flamewing can help</p>
+                    <h1 class="section-title">Server-Side Rendering vs Client-Side Rendering: Key Benefits for Spring Boot Applications</h1>
+                </div>
+                
+                <div class="row justify-content-center">
+                    <div class="col-lg-10">
+                        <div class="doc-card">
+                            <div class="d-flex align-items-center gap-3 mb-4">
+                                <div class="card-icon mb-0"><i class="bi bi-fire"></i></div>
+                                <div>
+                                    <h3 class="card-title mb-0">The Architectural Advantage of SSR</h3>
+                                </div>
+                            </div>
+                            
+                            <p class="lead text-white-50">When building web applications with Spring Boot, developers can choose between
+                                server-side rendering (SSR) and client-side JavaScript frameworks. While SPAs have
+                                gained popularity, server-side rendering offers distinct advantages for many
+                                applications.</p>
 
-                                <h2>Performance Benefits</h2>
+                            <hr class="my-4 border-secondary border-opacity-25">
 
-                                <p>Server-side rendering delivers immediate performance advantages. Users receive
-                                    fully-formed HTML content that browsers can display instantly, without waiting for
-                                    JavaScript bundles to download and execute. This results in faster initial page
-                                    loads and better user experience, especially on slower networks or devices.</p>
+                            <h3 class="text-white mt-4 mb-3 d-flex align-items-center gap-2">
+                                <i class="bi bi-lightning-charge-fill text-custom-orange fs-4"></i> Performance Benefits
+                            </h3>
+                            <p>Server-side rendering delivers immediate performance advantages. Users receive
+                                fully-formed HTML content that browsers can display instantly, without waiting for
+                                JavaScript bundles to download and execute. This results in faster initial page
+                                loads and better user experience, especially on slower networks or devices.</p>
 
-                                <p>Client-side rendering requires multiple round trips—fetching HTML shells, downloading
-                                    JavaScript, and making API calls—creating noticeable delays and loading spinners
-                                    that hurt user experience.</p>
+                            <p>Client-side rendering requires multiple round trips—fetching HTML shells, downloading
+                                JavaScript, and making API calls—creating noticeable delays and loading spinners
+                                that hurt user experience.</p>
 
-                                <h2>Better SEO</h2>
+                            <h3 class="text-white mt-5 mb-3 d-flex align-items-center gap-2">
+                                <i class="bi bi-search text-custom-orange fs-4"></i> Better SEO
+                            </h3>
+                            <p>Search engines favor content immediately available in HTML source code. Server-side
+                                rendered pages provide complete, indexable content from the moment they're served,
+                                ensuring better search rankings. JavaScript-heavy SPAs often struggle with SEO and
+                                require additional complexity to achieve similar search visibility.</p>
 
-                                <p>Search engines favor content immediately available in HTML source code. Server-side
-                                    rendered pages provide complete, indexable content from the moment they're served,
-                                    ensuring better search rankings. JavaScript-heavy SPAs often struggle with SEO and
-                                    require additional complexity to achieve similar search visibility.</p>
+                            <h3 class="text-white mt-5 mb-3 d-flex align-items-center gap-2">
+                                <i class="bi bi-diagram-3-fill text-custom-orange fs-4"></i> Simplified Architecture
+                            </h3>
+                            <p>SSR aligns naturally with Spring Boot's ecosystem, allowing developers to use
+                                familiar tools like Spring MVC controllers, Thymeleaf templates, and Spring Security
+                                in straightforward patterns. Client-side rendering introduces architectural
+                                complexity with separate API endpoints, state management, and often duplicated
+                                validation logic between client and server.</p>
 
-                                <h2>Simplified Architecture</h2>
+                            <h3 class="text-white mt-5 mb-3 d-flex align-items-center gap-2">
+                                <i class="bi bi-shield-check text-custom-orange fs-4"></i> Enhanced Security and Accessibility
+                            </h3>
+                            <p>Server-side rendering keeps sensitive business logic on the server, reducing security
+                                risks. It also works by default without JavaScript, providing better accessibility
+                                and progressive enhancement for users with disabilities or older browsers.</p>
 
-                                <p>SSR aligns naturally with Spring Boot's ecosystem, allowing developers to use
-                                    familiar tools like Spring MVC controllers, Thymeleaf templates, and Spring Security
-                                    in straightforward patterns. Client-side rendering introduces architectural
-                                    complexity with separate API endpoints, state management, and often duplicated
-                                    validation logic between client and server.</p>
+                            <h3 class="text-white mt-5 mb-3 d-flex align-items-center gap-2">
+                                <i class="bi bi-check2-circle text-custom-orange fs-4"></i> When to Choose Each Approach
+                            </h3>
+                            <p>Client-side rendering excels for highly interactive applications like dashboards or
+                                collaborative tools that need complex state management and real-time updates.
+                                However, for content-driven sites, e-commerce platforms, and applications
+                                prioritizing performance and maintainability, server-side rendering remains the
+                                superior choice.</p>
 
-                                <h2>Enhanced Security and Accessibility</h2>
-
-                                <p>Server-side rendering keeps sensitive business logic on the server, reducing security
-                                    risks. It also works by default without JavaScript, providing better accessibility
-                                    and progressive enhancement for users with disabilities or older browsers.</p>
-
-                                <h2>When to Choose Each Approach</h2>
-
-                                <p>Client-side rendering excels for highly interactive applications like dashboards or
-                                    collaborative tools that need complex state management and real-time updates.
-                                    However, for content-driven sites, e-commerce platforms, and applications
-                                    prioritizing performance and maintainability, server-side rendering remains the
-                                    superior choice.</p>
-
-                                <p>Modern hybrid approaches using tools like HTMX or Alpine.js can add interactivity to
-                                    server-rendered pages without the complexity of full SPAs, offering the best of both
-                                    worlds.</p>
+                            <p>Modern hybrid approaches using tools like HTMX or Alpine.js can add interactivity to
+                                server-rendered pages without the complexity of full SPAs, offering the best of both
+                                worlds.</p>
+                                
+                            <div class="mt-4 pt-3 border-top border-secondary border-opacity-25 d-flex justify-content-between align-items-center flex-wrap gap-2">
+                                <a href="gettingStarted.html" class="btn btn-flame">
+                                    <i class="bi bi-rocket-takeoff-fill me-1"></i>Get Started with Flamewing
+                                </a>
+                                <a href="elements.html" class="btn btn-glass">
+                                    Explore Elements <i class="bi bi-arrow-right ms-1"></i>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -139,53 +167,63 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <div class="text-center mb-5">
-                <h4 class="section-title">Useful links</h4>
-            </div>
-            <div class="row text-center">
-                <div class="col-md-4 mb-4 mb-md-0">
+            <div class="row">
+                <div class="col-lg-4 mb-4 mb-lg-0 text-center text-lg-start">
+                    <div class="d-inline-flex align-items-center gap-2 mb-3">
+                        <img src="img/logo.svg" alt="Flamewing Logo" width="34" height="34">
+                        <span class="h4 mb-0 text-white">Flamewing</span>
+                    </div>
+                    <p class="small text-muted pe-lg-4">
+                        A modern, high-performance template engine for Spring Boot. Compiles templates into native Java bytecode for unrivaled speed and modularity.
+                    </p>
+                </div>
+                <div class="col-6 col-lg-2 offset-lg-1 mb-4 mb-lg-0">
                     <h5>Documentation</h5>
                     <ul>
                         <li><a href="gettingStarted.html">Getting started</a></li>
                         <li><a href="configuration.html">Configuration</a></li>
                         <li><a href="specialChar.html">The special `@` character</a></li>
-                        <li><a href="flamewingResponse.html">The Flamewing response</a></li>
+                        <li><a href="flamewingResponse.html">Flamewing response</a></li>
                         <li><a href="fragmentRetrieval.html">Fragment retrieval</a></li>
                         <li><a href="elements.html">Syntax and elements</a></li>
                     </ul>
                 </div>
-                <div class="col-md-4 mb-4 mb-md-0">
-                    <h5>Source Code</h5>
+                <div class="col-6 col-lg-2 mb-4 mb-lg-0">
+                    <h5>Resources</h5>
                     <ul>
-                        <li><a href="https://github.com/pazvanti/Flamewing" target="_blank">Flamewing Source Code</a></li>
-                        <li><a href="https://github.com/pazvanti/Flamewing/issues" target="_blank">Issue tracker</a></li>
-                        <li><a href="https://github.com/pazvanti/Flamewing-Benchmarks" target="_blank">Benchmarks source
-                                code</a></li>
+                        <li><a href="why_ssr.html">Why SSR?</a></li>
+                        <li><a href="benchmarks.html">Benchmarks</a></li>
+                        <li><a href="https://github.com/pazvanti/Flamewing" target="_blank" rel="noopener noreferrer">Source Code</a></li>
+                        <li><a href="https://github.com/pazvanti/Flamewing/issues" target="_blank" rel="noopener noreferrer">Issue tracker</a></li>
+                        <li><a href="https://github.com/pazvanti/Flamewing-Benchmarks" target="_blank" rel="noopener noreferrer">Benchmark Repo</a></li>
                     </ul>
                 </div>
-                <div class="col-md-4 mb-4 mb-md-0">
+                <div class="col-12 col-lg-3 text-center text-lg-start">
                     <h5>About and Support</h5>
                     <ul>
-                        <li><a href="https://petrepopescu.tech" target="_blank">My personal blog</a></li>
-                        <li><a href="https://linkedin.com/in/ppopescu/" target="_blank">My LinkedIn profile</a></li>
-                        <li><a href="https://petrepopescu.tech/contact/" target="_blank">Get in touch</a></li>
+                        <li><a href="https://petrepopescu.tech" target="_blank" rel="noopener noreferrer">Personal blog</a></li>
+                        <li><a href="https://linkedin.com/in/ppopescu/" target="_blank" rel="noopener noreferrer">LinkedIn profile</a></li>
+                        <li><a href="https://petrepopescu.tech/contact/" target="_blank" rel="noopener noreferrer">Get in touch</a></li>
                     </ul>
                 </div>
             </div>
+            
             <div class="footer-bottom d-flex flex-column flex-md-row justify-content-between align-items-center">
-                <p class="small text-muted mb-2 mb-md-0">&copy; Petre Popescu</p>
+                <p class="small text-muted mb-2 mb-md-0">&copy; Petre Popescu. Open-source under Apache-2.0 / MIT.</p>
                 <div class="footer-social-icons">
-                    <a href="https://github.com/pazvanti/Flamewing/" target="_blank"><i class="bi bi-github"></i></a>
-                    <a href="https://www.linkedin.com/in/ppopescu/" target="_blank"><i class="bi bi-linkedin"></i></a>
-                    <a href="https://petrepopescu.tech" target="_blank"><i class="bi bi-globe"></i></a>
+                    <a href="https://github.com/pazvanti/Flamewing/" target="_blank" rel="noopener noreferrer" title="GitHub"><i class="bi bi-github"></i></a>
+                    <a href="https://www.linkedin.com/in/ppopescu/" target="_blank" rel="noopener noreferrer" title="LinkedIn"><i class="bi bi-linkedin"></i></a>
+                    <a href="https://petrepopescu.tech" target="_blank" rel="noopener noreferrer" title="Website"><i class="bi bi-globe"></i></a>
                 </div>
             </div>
         </div>
     </footer>
 
+    <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script>hljs.highlightAll();</script>
-    <!-- 100% privacy-first analytics -->
+    <script src="main.js"></script>
+    
+    <!-- Privacy-first analytics -->
     <script async src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
     <noscript><img src="https://queue.simpleanalyticscdn.com/noscript.gif" alt="" referrerpolicy="no-referrer-when-downgrade"/></noscript>
 </body>

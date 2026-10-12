@@ -1,128 +1,204 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-bs-theme="dark">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-        crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="css/style.css" />
-    <link rel="icon" type="image/png" href="img/logo_small.png">
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flamewing - Benchmarks & Performance</title>
+    <meta name="description" content="Flamewing benchmark results comparing rendering performance against Thymeleaf and Rocker in Spring Boot applications.">
+    
+    <!-- Bootstrap & Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="img/logo.svg" type="image/svg+xml">
+    
+    <!-- Highlight.js -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
-
-    <!-- and it's easy to individually load additional languages -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/java.min.js"></script>
-    <title>Flamewing Template Engine Documentation - Getting started</title>
 </head>
 
 <body>
-    <div class="container">
-        <nav class="navbar navbar-expand-lg navbar-dark navbar-bg shadow " style="z-index: 9999;">
-            <div class="container">
-                <a class="navbar-brand" href="index.html">
-                    <img src="img/logo_small.png" width="30" height="30" class="d-inline-block align-top" alt="" />
-                    Flamewing
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
-                    <ul class="navbar-nav d-flex">
-                        <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="index.html">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="https://github.com/pazvanti/Flamewing/">Source Code</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="https://github.com/pazvanti/Flamewing/issues">Roadmap and issues</a>
-                        </li>
-                        <li class="nav-item dropdown active">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                                data-bs-toggle="dropdown" aria-expanded="false">
-                                Documentation
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="gettingStarted.html">Getting started</a></li>
-                                <li><a class="dropdown-item" href="configuration.html">Configuration</a></li>
-                                <li><a class="dropdown-item" href="specialChar.html">The special `@` character</a></li>
-                                <li><a class="dropdown-item" href="flamewingResponse.html">The Flamewing Response</a></li>
-                                <li><a class="dropdown-item" href="fragmentRetrieval.html">Fragment retrieval</a></li>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-                                <li><a class="dropdown-item" href="elements.html">Syntax and Elements</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="https://petrepopescu.tech">Blog</a>
-                        </li>
-                    </ul>
-                </div>
+
+    <!-- Sticky Navbar -->
+    <nav class="navbar navbar-expand-lg sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <img src="img/logo.svg" alt="Flamewing Logo" width="38" height="38">
+                <span>Flamewing</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="why_ssr.html">Why SSR?</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="benchmarks.html">Benchmarks</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDocsDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Documentation
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDocsDropdown">
+                            <li><a class="dropdown-item" href="gettingStarted.html"><i class="bi bi-rocket-takeoff me-2 text-custom-orange"></i>Getting started</a></li>
+                            <li><a class="dropdown-item" href="configuration.html"><i class="bi bi-sliders me-2 text-custom-orange"></i>Configuration</a></li>
+                            <li><a class="dropdown-item" href="specialChar.html"><i class="bi bi-at me-2 text-custom-orange"></i>The special `@` character</a></li>
+                            <li><a class="dropdown-item" href="flamewingResponse.html"><i class="bi bi-arrow-return-right me-2 text-custom-orange"></i>The Flamewing response</a></li>
+                            <li><a class="dropdown-item" href="fragmentRetrieval.html"><i class="bi bi-puzzle me-2 text-custom-orange"></i>Fragment retrieval</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="elements.html"><i class="bi bi-code-slash me-2 text-custom-orange"></i>Syntax and elements</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" target="_blank" rel="noopener noreferrer" href="https://github.com/pazvanti/Flamewing">
+                            <i class="bi bi-github me-1"></i>Source Code
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" target="_blank" rel="noopener noreferrer" href="https://github.com/pazvanti/Flamewing/issues">
+                            <i class="bi bi-bug me-1"></i>Issues tracker
+                        </a>
+                    </li>
+                    <li class="nav-item ms-lg-3 mt-2 mt-lg-0">
+                        <a class="btn btn-flame px-3 py-2" href="https://github.com/pazvanti/Flamewing/tree/main/releases" target="_blank" rel="noopener noreferrer">
+                            <i class="bi bi-download"></i>Download Flamewing
+                        </a>
+                    </li>
+                </ul>
             </div>
-        </nav>
-        <div class="row content-one shadow">
-            <div class="col-12 mt-2">
-                <h4 class="text-center text-white">Getting started with Flamewing</h4>
-                <div class="row mt-4 p-1 text-white">
-                    <p>Flamewing is still in early development and the following benchmarks should be taken with a grain
-                        of salt and may not reflect the final version of the code. Changes may occur in the future, both
-                        positive and negative from a speed perspective. Furthermore, current benchmarks were done
-                        redumentary and not using propper benchmarking technics like using JMH.</p>
-                    <p>As a starter, the template for Rocker and Thymeleaf from <a
-                            href="https://github.com/mbosecke/template-benchmark" target="_blank">this repository</a>
-                        was used, with an additional template for Flamewing which rendered the same result. However, due
-                        to Flamewing being in early stages of development and because it needs a Spring Context to compile
-                        the template, a simple <code>@SpringBootTest</code> was used. For Rocker, the template was
-                        compiled before execution. </p>
-                    <p>Using <code>100_000</code> iterations, the template was called and rendered. Execution time in ms
-                        was monitored using <code>System.currentTimeMillis()</code>. I know this is NOT the best
-                        approach, but wanted to have a general idea of the performance. Propper benchmarking weill be
-                        done in the future.</p>
-                    <p>Below is a table with the results of the benchmarks on my machine (using a Ryzen 7800x3D) as well as source code of the test class that was used:</p>
-                    <div class="row">
-                        <div class="col-12">
-                            <table class="benchmarks">
-                                <thead>
-                                    <tr>
-                                        <th>Template Engine</th>
-                                        <th>Execution Time</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>Flamewing</td>
-                                        <td>786ms</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Rocker</td>
-                                        <td>818ms</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Thymeleaf</td>
-                                        <td>19251ms</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-12 benchmark">
-                            <img src="img/benchmark.png" />
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-12">
-                            <pre>
-                                <code class="language-java">
-import org.example.model.Stock;
+        </div>
+    </nav>
+
+    <main>
+        <section class="docs-container">
+            <div class="container">
+                <div class="text-center mb-5">
+                    <p class="text-custom-orange section-subtitle">Unmatched Performance &bull; Early Metrics</p>
+                    <h2 class="section-title">Flamewing Benchmarks</h2>
+                </div>
+                
+                <div class="row g-4 justify-content-center">
+                    <div class="col-lg-10">
+                        <div class="doc-card">
+                            <div class="d-flex align-items-center gap-3 mb-4">
+                                <div class="card-icon mb-0"><i class="bi bi-speedometer2"></i></div>
+                                <div>
+                                    <h3 class="card-title mb-1">Benchmarking Flamewing</h3>
+                                    <p class="small text-muted mb-0">Tested with 100,000 iterations on AMD Ryzen 7800X3D</p>
+                                </div>
+                            </div>
+                            
+                            <p>Flamewing is still in early development and the following benchmarks should be taken with a grain
+                                of salt and may not reflect the final version of the code. Changes may occur in the future, both
+                                positive and negative from a speed perspective. Furthermore, current benchmarks were done
+                                rudimentarily and not using proper benchmarking techniques like using JMH.</p>
+                            <p>As a starter, the template for Rocker and Thymeleaf from <a
+                                    href="https://github.com/mbosecke/template-benchmark" target="_blank" rel="noopener noreferrer">this repository</a>
+                                was used, with an additional template for Flamewing which rendered the same result. However, due
+                                to Flamewing being in early stages of development and because it needs a Spring Context to compile
+                                the template, a simple <code>@SpringBootTest</code> was used. For Rocker, the template was
+                                compiled before execution. </p>
+                            <p>Using <code>100_000</code> iterations, the template was called and rendered. Execution time in ms
+                                was monitored using <code>System.currentTimeMillis()</code>. I know this is NOT the best
+                                approach, but wanted to have a general idea of the performance. Proper benchmarking will be
+                                done in the future.</p>
+                            <p>Below is a table with the results of the benchmarks on my machine (using a Ryzen 7800x3D) as well as source code of the test class that was used:</p>
+                            
+                            <!-- Results Table -->
+                            <div class="table-responsive my-4">
+                                <table class="table-custom">
+                                    <thead>
+                                        <tr>
+                                            <th>Template Engine</th>
+                                            <th>Execution Time (100k calls)</th>
+                                            <th>Relative Speed</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="table-active">
+                                            <td>
+                                                <strong class="text-white d-inline-flex align-items-center gap-2">
+                                                    <span class="legend-color legend-flamewing"></span> Flamewing
+                                                </strong>
+                                            </td>
+                                            <td><span class="badge bg-success bg-opacity-25 text-success fs-6">786ms</span></td>
+                                            <td><strong class="text-custom-orange">1.0x (Fastest)</strong></td>
+                                            <td><span class="badge bg-warning bg-opacity-25 text-warning">Winner</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <strong class="text-white d-inline-flex align-items-center gap-2">
+                                                    <span class="legend-color legend-rocker"></span> Rocker
+                                                </strong>
+                                            </td>
+                                            <td><span class="badge bg-info bg-opacity-25 text-info fs-6">818ms</span></td>
+                                            <td>1.04x slower</td>
+                                            <td><span class="badge bg-secondary bg-opacity-25 text-secondary">Runner-up</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <strong class="text-white d-inline-flex align-items-center gap-2">
+                                                    <span class="legend-color legend-thymeleaf"></span> Thymeleaf
+                                                </strong>
+                                            </td>
+                                            <td><span class="badge bg-danger bg-opacity-25 text-danger fs-6">19,251ms</span></td>
+                                            <td>24.5x slower</td>
+                                            <td><span class="badge bg-danger bg-opacity-25 text-danger">Baseline</span></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            
+                            <!-- Visual Chart -->
+                            <div class="benchmark-card p-4 rounded-4 mb-4">
+                                <h4 class="text-center mb-1 text-white">Pages rendered in 1 second</h4>
+                                <p class="text-center text-muted small mb-4">Benchmark throughput comparison</p>
+                                <div class="chart-container">
+                                    <div class="bars-container">
+                                        <div class="bar bar-thymeleaf" title="Thymeleaf: 5,194 pages">
+                                            <div class="bar-value">Thymeleaf: 5,194</div>
+                                        </div>
+                                        <div class="bar bar-rocker" title="Rocker: 157,009 pages">
+                                            <div class="bar-value">Rocker: 157,009</div>
+                                        </div>
+                                        <div class="bar bar-flamewing" title="Flamewing: 167,785 pages">
+                                            <div class="bar-value">Flamewing: 167,785 (Fastest)</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="legend">
+                                    <div class="legend-item">
+                                        <div class="legend-color legend-thymeleaf"></div>
+                                        <div class="legend-text"><p>Thymeleaf</p><p>5,194 pages</p></div>
+                                    </div>
+                                    <div class="legend-item">
+                                        <div class="legend-color legend-rocker"></div>
+                                        <div class="legend-text"><p>Rocker</p><p>157,009 pages</p></div>
+                                    </div>
+                                    <div class="legend-item">
+                                        <div class="legend-color legend-flamewing"></div>
+                                        <div class="legend-text"><p>Flamewing</p><p>167,785 pages</p></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Source Code Section -->
+                            <h4 class="mt-4 mb-2">Benchmark Test Code</h4>
+                            <p class="text-muted small">Here is the exact Spring Boot test class used to execute the benchmark:</p>
+                            
+                            <pre><code class="language-java">import org.example.model.Stock;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.ImportAutoConfiguration;
@@ -191,7 +267,7 @@ class FullBenchmark {
 
     private long runBenchmark(Runnable runnable) {
         long start = System.currentTimeMillis();
-        for (int count = 0; count&lt;100_000; count++) {
+        for (int count = 0; count &lt; 100_000; count++) {
             runnable.run();
         }
         long end = System.currentTimeMillis();
@@ -212,19 +288,77 @@ class FullBenchmark {
         context.put("items", items);
         return context;
     }
-}
-
-                                </code>
-                            </pre>
+}</code></pre>
                         </div>
                     </div>
                 </div>
             </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4 mb-lg-0 text-center text-lg-start">
+                    <div class="d-inline-flex align-items-center gap-2 mb-3">
+                        <img src="img/logo.svg" alt="Flamewing Logo" width="34" height="34">
+                        <span class="h4 mb-0 text-white">Flamewing</span>
+                    </div>
+                    <p class="small text-muted pe-lg-4">
+                        A modern, high-performance template engine for Spring Boot. Compiles templates into native Java bytecode for unrivaled speed and modularity.
+                    </p>
+                </div>
+                <div class="col-6 col-lg-2 offset-lg-1 mb-4 mb-lg-0">
+                    <h5>Documentation</h5>
+                    <ul>
+                        <li><a href="gettingStarted.html">Getting started</a></li>
+                        <li><a href="configuration.html">Configuration</a></li>
+                        <li><a href="specialChar.html">The special `@` character</a></li>
+                        <li><a href="flamewingResponse.html">Flamewing response</a></li>
+                        <li><a href="fragmentRetrieval.html">Fragment retrieval</a></li>
+                        <li><a href="elements.html">Syntax and elements</a></li>
+                    </ul>
+                </div>
+                <div class="col-6 col-lg-2 mb-4 mb-lg-0">
+                    <h5>Resources</h5>
+                    <ul>
+                        <li><a href="why_ssr.html">Why SSR?</a></li>
+                        <li><a href="benchmarks.html">Benchmarks</a></li>
+                        <li><a href="https://github.com/pazvanti/Flamewing" target="_blank" rel="noopener noreferrer">Source Code</a></li>
+                        <li><a href="https://github.com/pazvanti/Flamewing/issues" target="_blank" rel="noopener noreferrer">Issue tracker</a></li>
+                        <li><a href="https://github.com/pazvanti/Flamewing-Benchmarks" target="_blank" rel="noopener noreferrer">Benchmark Repo</a></li>
+                    </ul>
+                </div>
+                <div class="col-12 col-lg-3 text-center text-lg-start">
+                    <h5>About and Support</h5>
+                    <ul>
+                        <li><a href="https://petrepopescu.tech" target="_blank" rel="noopener noreferrer">Personal blog</a></li>
+                        <li><a href="https://linkedin.com/in/ppopescu/" target="_blank" rel="noopener noreferrer">LinkedIn profile</a></li>
+                        <li><a href="https://petrepopescu.tech/contact/" target="_blank" rel="noopener noreferrer">Get in touch</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom d-flex flex-column flex-md-row justify-content-between align-items-center">
+                <p class="small text-muted mb-2 mb-md-0">&copy; Petre Popescu. Open-source under Apache-2.0 / MIT.</p>
+                <div class="footer-social-icons">
+                    <a href="https://github.com/pazvanti/Flamewing/" target="_blank" rel="noopener noreferrer" title="GitHub"><i class="bi bi-github"></i></a>
+                    <a href="https://www.linkedin.com/in/ppopescu/" target="_blank" rel="noopener noreferrer" title="LinkedIn"><i class="bi bi-linkedin"></i></a>
+                    <a href="https://petrepopescu.tech" target="_blank" rel="noopener noreferrer" title="Website"><i class="bi bi-globe"></i></a>
+                </div>
+            </div>
         </div>
-    </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script>hljs.highlightAll();</script>
-    <!-- 100% privacy-first analytics -->
+    <script src="main.js"></script>
+    
+    <!-- Privacy-first analytics -->
     <script async src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
     <noscript><img src="https://queue.simpleanalyticscdn.com/noscript.gif" alt="" referrerpolicy="no-referrer-when-downgrade"/></noscript>
 </body>
+
 </html>
