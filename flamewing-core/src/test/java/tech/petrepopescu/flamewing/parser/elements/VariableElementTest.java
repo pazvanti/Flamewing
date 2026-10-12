@@ -70,4 +70,34 @@ class VariableElementTest {
 
         Assertions.assertEquals(expected, TestUtil.sanitizeResult(element.write().toString()));
     }
+
+    @Test
+    void methodCallWithTrailingText() {
+        String line = "@battery.getCapacityKwh()kWh";
+        VariableElement element = new VariableElement(List.of(line), 0, new ElementFactory(Set.of()), ElementFactory.DEFAULT_BUILDER_NAME);
+        element.parse("");
+
+        String result = element.write().toString();
+        Assertions.assertTrue(result.contains("Stringifier.toString(battery.getCapacityKwh())"), "Actual result: " + result);
+    }
+
+    @Test
+    void arrayAccessWithTrailingText() {
+        String line = "@arr[i]kWh";
+        VariableElement element = new VariableElement(List.of(line), 0, new ElementFactory(Set.of()), ElementFactory.DEFAULT_BUILDER_NAME);
+        element.parse("");
+
+        String result = element.write().toString();
+        Assertions.assertTrue(result.contains("Stringifier.toString(arr[i])"), "Actual result: " + result);
+    }
+
+    @Test
+    void arrayAccessWithDot() {
+        String line = "@arr[i].field";
+        VariableElement element = new VariableElement(List.of(line), 0, new ElementFactory(Set.of()), ElementFactory.DEFAULT_BUILDER_NAME);
+        element.parse("");
+
+        String result = element.write().toString();
+        Assertions.assertTrue(result.contains("Stringifier.toString(arr[i].field)"), "Actual result: " + result);
+    }
 }

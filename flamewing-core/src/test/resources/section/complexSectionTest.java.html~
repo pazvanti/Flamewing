@@ -1,0 +1,20 @@
+@args(int inputVar)
+<html>
+<body>
+
+@section("section1") {
+    <p>Section 1 content is here</p>
+}
+
+<div>This is in the main content: @inputVar</div>
+
+@section("section2") {
+    <p>Section 2 content is here</p>
+}
+
+@section("section3") {
+    <p>Section 3 content is here</p>
+}
+
+</body>
+</html>
